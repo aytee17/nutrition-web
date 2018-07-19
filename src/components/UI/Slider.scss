@@ -1,0 +1,14 @@
+.level {
+	width: 1.5rem;
+	border-radius: 20%;
+	text-align: center;
+	font-size: 0.9rem;
+	padding: 0.1rem;
+	color: #a6a9ad;
+	cursor: pointer;
+}
+
+.active {
+	color: white;
+	background-color: purple;
+}

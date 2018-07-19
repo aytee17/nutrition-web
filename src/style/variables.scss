@@ -1,0 +1,26 @@
+$input-border: 1px solid #e1e1e1;
+
+$main-color: hsl(262, 52%, 47%);
+$light: hsl(262, 47%, 75%);	
+$button-color: hsl(262, 55%, 55%);
+$button-shadow: hsl(262, 50%, 45%);
+
+$secondary-color: rgb(69, 176, 230);
+
+$button-highlight: hsl(262, 55%, 57%);
+$transition-out: 0.2s ease-out;
+
+$error: #f44336;
+
+$background: #e6ebf1;
+
+@mixin button {
+	cursor: pointer;
+	border: none;
+	outline: none;
+}
+
+@mixin pane {
+	background-color: #fff;
+	box-sizing: border-box;
+}

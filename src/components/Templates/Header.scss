@@ -1,0 +1,12 @@
+@import "../../style/variables";
+
+#header {
+	width: 100%;
+	height: 100%;
+	background-color: $main-color;
+	color: $background;
+	display: grid;
+	grid-template-columns: 14rem auto;
+	align-items: center;
+	justify-content: space-between;
+}

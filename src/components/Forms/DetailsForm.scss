@@ -1,0 +1,11 @@
+@import "../../style/variables";
+
+.display {
+	border: 1px solid $main-color;
+	color: #2d3643;
+	padding: 1.3rem;
+	text-align: center;
+	font-size: 1.2rem;
+	margin-top: 0.625rem;
+	border-radius: 3px;
+}

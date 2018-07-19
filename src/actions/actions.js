@@ -1,0 +1,20 @@
+export const UPDATE_SEARCH_TERM = "UPDATE_SEARCH_TERM";
+export const GET_INGREDIENTS = "GET_INGREDIENTS";
+
+export const HOVER_INGREDIENT = "HOVER_INGREDIENT";
+
+export const UPDATE_AMOUNT = "UPDATE_AMOUNT";
+export const SET_READY = "SET_READY";
+export const ADD_INGREDIENT = "ADD_INGREDIENT";
+
+export const CLEAR_ACTIVE_INGREDIENT = "CLEAR_ACTIVE_INGREDIENT";
+export const CLEAR_INGREDIENTS = "CLEAR_INGREDIENTS";
+
+export const CLEAR_SEARCH_TERM = "CLEAR_SEARCH_TERM";
+
+export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
+
+export const UPDATE_USER = "UPDATE_USER";
+
+export const GET_MEALS = "GET_MEALS";

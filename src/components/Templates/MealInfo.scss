@@ -1,0 +1,19 @@
+.meal {
+	display: grid;
+	grid-template: auto / 15rem;
+	grid-row-gap: 1rem;
+}
+
+.ingredient-list {
+}
+
+.ingredient {
+	display: grid;
+	grid-template-columns: 2.7rem auto;
+	grid-column-gap: 0.5rem;
+	padding: 0.5rem;
+}
+
+.amount {
+	text-align: right;
+}

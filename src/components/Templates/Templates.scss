@@ -1,0 +1,193 @@
+@import "../../style/variables";
+
+#container {
+	height: 500px;
+	width: 100%;
+}
+
+#background {
+	/* relative, so it can contain it's absolute child and it's longness */
+	position: relative;
+	width: 100%;
+	background-color: hsla(262, 47%, 45%, 0.4);
+	height: 100%;
+	overflow: hidden;
+}
+
+#background-scroll {
+	/* absolute, so it can overlap things */
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 200%;
+	//background-image: url("../../dist/b.svg");
+	background-position-x: center;
+	background-size: 318px;
+	animation: scroll 30s linear infinite;
+}
+
+@keyframes scroll {
+	0% {
+		transform: translate3d(0, 0, 0);
+	}
+	100% {
+		transform: translate3d(0, -50%, 0);
+	}
+}
+
+/*time, background size, background img, background position, background colour*/
+
+#welcome-heading {
+	margin: auto;
+	margin-bottom: 1.25rem;
+	width: 100%;
+	text-align: center;
+	font-size: 1.5rem;
+	font-weight: 400;
+	color: #3f3f44;
+	letter-spacing: -0.5px;
+}
+
+.logo {
+	color: $main-color;
+	font-size: 1.6rem;
+	font-weight: 700;
+	letter-spacing: -0.5px;
+}
+
+.pane {
+	@include pane;
+	width: 360px;
+	padding: 12px 20px;
+	margin: auto;
+	border-radius: 5px;
+	box-shadow: 0px 0px 2.5px rgba(0, 0, 0, 0.5);
+}
+
+.direction {
+	margin-top: 2.25rem;
+	text-align: center;
+	font-size: 0.9rem;
+	opacity: 0.9;
+}
+
+.horizontal {
+	display: flex;
+	justify-content: space-between;
+}
+
+.horizontal.border {
+	border: $input-border;
+	border-radius: 3px;
+}
+
+.horizontal.invalid {
+	border: 1px solid $error;
+	border-radius: 3px;
+}
+
+.error {
+	color: $error;
+	font-size: 0.81rem;
+}
+
+.loading-circle {
+	animation: spin 0.9s infinite cubic-bezier(0.085, 0.26, 0.935, 0.71);
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+		transform-origin: center center;
+	}
+	to {
+		transform: rotate(360deg);
+		transform-origin: center center;
+	}
+}
+
+.menu-button {
+	@include button;
+	border-radius: 3px;
+	background-color: $main-color;
+
+	&.on,
+	&:hover {
+		background-color: $button-color;
+	}
+
+	&:hover > .account-icon {
+		fill: #fff;
+	}
+
+	&.on > .account-icon {
+		fill: #fff;
+	}
+}
+
+.menu {
+	@include pane;
+	position: absolute;
+	overflow: hidden;
+	right: 0;
+	top: 55px;
+	width: 12.5rem;
+	color: #676767;
+	visibility: hidden;
+	z-index: 99;
+
+	border-radius: 3px;
+	opacity: 0;
+	transition: 0.15s ease-in;
+	border: 1px solid #dfdfdf;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+	&.open {
+		transform: translateY(5px);
+		opacity: 1;
+		transition: 0.2s ease-out;
+		visibility: visible;
+	}
+}
+
+.menu-item {
+	cursor: pointer;
+	padding: 0.7rem 1rem;
+	font-size: 0.85rem;
+
+	&.top {
+		border-bottom: 1px solid #dfdfdf;
+	}
+
+	&:hover {
+		background-color: #f6f3ff;
+	}
+}
+
+.sidebar {
+	height: 100%;
+	border-right: 1px solid #e1e1e1;
+	background-color: #f7f7f7;
+	padding-top: 0.75em;
+	color: #676767;
+}
+
+.sidebar-item {
+	width: 100%;
+	font-size: 1rem;
+	display: flex;
+	align-items: center;
+	height: 2.5rem;
+	cursor: pointer;
+
+	&:hover {
+		background-color: white;
+	}
+}
+
+.sidebar-contents {
+	display: flex;
+	align-items: center;
+	margin-left: 1rem;
+}

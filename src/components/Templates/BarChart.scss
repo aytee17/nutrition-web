@@ -1,0 +1,41 @@
+.bar {
+	margin-bottom: 0.5rem;
+	display: grid;
+	grid-template-columns: 3rem 12rem;
+}
+
+.first {
+
+}
+
+.second {
+	padding-top: 0.15rem;
+}
+
+.title {
+	font: {
+		weight: bold;
+		size: 0.8rem;
+	}
+	color: grey;
+}
+
+.percentage {
+	font-size: 1rem;
+}
+
+.info {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	font-size: 0.8rem;
+	align-items: baseline;
+}
+
+.fraction {
+	vertical-align: text-bottom;
+}
+
+.total {
+	
+}

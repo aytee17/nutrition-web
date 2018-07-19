@@ -1,0 +1,21 @@
+#template-all {
+	height: 100%;
+	display: grid;
+	grid-template-rows: 3rem auto;
+}
+
+@mixin template {
+	color: #4e4a57;
+	font-size: 0.9rem;
+	height: 100%;
+}
+
+#template {
+	@include template;
+	display: grid;
+	grid-template-columns: 14rem auto;
+}
+
+#template-no-bar {
+	@include template;
+}

@@ -1,0 +1,40 @@
+@import "../../style/variables";
+
+@mixin icon {
+	position: absolute;
+	top: 0.75rem;
+	opacity: 0.68;
+}
+
+.icon {
+	@include icon;
+	fill: currentColor;
+	transition: all 0.15s ease-in;
+	pointer-events: none;
+	left: 0.5rem;
+}
+
+.icon-right {
+	@include icon;
+	right: 0.625rem;
+	cursor: pointer;
+}
+
+@mixin button-icon {
+	fill: $light;
+	transition: 0.15s ease-in;
+	transform: rotate(0deg);
+}
+
+.button-icon {
+	@include button-icon;
+}
+
+.down-icon {
+	@include button-icon;
+
+	&.open {
+		transform: rotate(180deg);
+		transition: 0.2s ease-out;
+	}
+}
