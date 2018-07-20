@@ -49,4 +49,24 @@ const List = ({
 	return <div className={style["list"]}>{renderList()}</div>;
 };
 
+const ListItem = ({
+	className,
+	onClick,
+	onMouseOver,
+	onMouseOut,
+	name,
+	isActive,
+	children
+}) => (
+	<div
+		className={className}
+		onClick={onClick}
+		onMouseOver={onMouseOver}
+		onMouseOut={onMouseOut}
+	>
+		<div className={style["ingredient-name"]}>{name}</div>
+		{isActive && children}
+	</div>
+);
+
 export default List;

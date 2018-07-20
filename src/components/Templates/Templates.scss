@@ -60,9 +60,25 @@
 	@include pane;
 	width: 360px;
 	padding: 12px 20px;
-	margin: auto;
 	border-radius: 5px;
 	box-shadow: 0px 0px 2.5px rgba(0, 0, 0, 0.5);
+
+	&.center {
+		margin: auto;
+	}
+
+	&.fade {
+		animation: fadeIn 0.2s ease-out;
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		transform: translateX(-0.25rem);
+	}
+	100% {
+		transform: translateX(0px);
+	}
 }
 
 .direction {

@@ -30,6 +30,7 @@ export default class ForgotPassword extends React.Component {
 						height: this.state.submitted ? "10rem" : "16rem",
 						paddingTop: "1rem"
 					}}
+					center
 				>
 					<div
 						style={{

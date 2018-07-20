@@ -29,6 +29,7 @@ export default class SignUpSuccess extends Component {
 								padding: "1rem 1.4rem",
 								marginTop: "8rem"
 							}}
+							center
 						>
 							<div style={{ padding: "0.5rem" }}>
 								<div

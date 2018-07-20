@@ -29,8 +29,10 @@ const InnerForm = ({
 	const age = Math.floor((Date.now() - new Date(user.dob)) / 31536000000);
 	return (
 		<form onSubmit={handleSubmit}>
-			<div><strong>Basic Information</strong></div>
-			<Horizontal style={{paddingTop: "0.625rem"}}>
+			<div>
+				<strong>Basic Information</strong>
+			</div>
+			<Horizontal style={{ paddingTop: "0.625rem" }}>
 				<Input
 					name="weight"
 					number
@@ -100,7 +102,9 @@ const InnerForm = ({
 				}}
 			/>
 			<br />
-			<div style={{ marginTop: "1rem" }}><strong>Estimated Energy Requirement</strong></div>
+			<div style={{ marginTop: "1rem" }}>
+				<strong>Estimated Energy Requirement</strong>
+			</div>
 			<div className={style["display"]}>
 				<div>
 					{values.weight !== ""

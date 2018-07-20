@@ -47,6 +47,7 @@ export default class SignUp extends Component {
 								width: "455px",
 								paddingBottom: "16.5px"
 							}}
+							center
 						>
 							<SignUpForm
 								setSubmitted={this.setSubmitted}

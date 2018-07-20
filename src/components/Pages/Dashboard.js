@@ -14,6 +14,7 @@ function Dashboard ({ user, updateUser }) {
 		return (
 			<AppTemplate noBar >
 				<Pane
+					center
 					style={{ marginTop: "3.5rem", padding: "2rem", width: "37%" }}
 				>
 					<div>Hi {user.name},</div>

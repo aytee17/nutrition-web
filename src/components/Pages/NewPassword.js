@@ -26,6 +26,7 @@ class NewPassword extends React.Component {
 						height: this.state.submitted ? "10rem" : "13rem",
 						paddingTop: "1rem"
 					}}
+					center
 				>
 					<div
 						style={{

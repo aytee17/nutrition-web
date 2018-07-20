@@ -6,8 +6,8 @@ import { Horizontal, Menu } from "../Templates/Templates";
 import { VisibilityIcon, DownIcon } from "../Icons/Icons";
 import { range } from "../../Utility";
 
-export const InputList = ({ children }) => (
-	<div className={style["input-list"]}>
+export const InputList = ({ children, ...props }) => (
+	<div className={style["input-list"]} {...props}>
 		{children}
 	</div>
 );
@@ -18,6 +18,7 @@ export const Input = ({
 	invalid,
 	errorMessage,
 	number,
+	noLabel,
 	noUnits,
 	noEmoji,
 	...props
@@ -28,6 +29,7 @@ export const Input = ({
 		[style["invalid"]]: invalid,
 		[style["number"]]: number,
 		[style["no-units"]]: number && noUnits,
+		[style["no-label"]]: noLabel,
 		[style["no-emoji"]]: noEmoji
 	});
 	return (
@@ -59,17 +61,23 @@ export const Label = ({ icon, children, invalid, errorMessage, ...props }) => {
 	);
 };
 
-export const SmallLabel = ({ children, ...props }) => (
+export const SmallLabel = ({ children, errorMessage, ...props }) => (
 	<label className={style["small-label"]} {...props}>
 		{children}
 	</label>
 );
 
-export const Button = ({ children, ...props }) => (
-	<button className={style["button"]} {...props}>
-		{children}
-	</button>
-);
+export const Button = ({ children, pressed, ...props }) => {
+	const className = cs(style["button"], {
+		[style["pressed"]]: pressed
+	});
+
+	return (
+		<button className={className} {...props}>
+			{children}
+		</button>
+	);
+};
 
 export const ButtonTitle = ({ isSubmitting, children }) => {
 	return (
@@ -109,7 +117,12 @@ export const Radio = ({ id, label, ...props }) => {
 	);
 };
 
-export const PasswordStrengthIndicator = ({ value, score, disabled, slide }) => {
+export const PasswordStrengthIndicator = ({
+	value,
+	score,
+	disabled,
+	slide
+}) => {
 	const strengthLevels = [
 		"Very Weak ❌",
 		"Weak ❌",

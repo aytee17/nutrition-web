@@ -49,7 +49,7 @@ class Login extends Component {
 						<WelcomeHeading>
 							Login to <Logo />
 						</WelcomeHeading>
-						<Pane style={{ height: "240px" }}>
+						<Pane style={{ height: "240px" }} center>
 							<LoginForm
 								login={this.props.login}
 								loggedInUnverified={this.loggedInUnverified}

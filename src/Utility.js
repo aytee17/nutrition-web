@@ -29,6 +29,12 @@ export const getMonth = number => {
 	][number - 1];
 };
 
+export const keys = {
+	UP: 38,
+	DOWN: 40,
+	ENTER: 13
+}
+
 // Basal Metabolic Rate
 const bmrTable = {
 	M: [[74, 2754], [63, 2896], [48, 3653], [49, 2459]],

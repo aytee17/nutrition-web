@@ -6,7 +6,7 @@
 
 .input-list {
 	display: grid;
-	grid-template-row: auto; 
+	grid-template-row: auto;
 	grid-row-gap: 0.625rem;
 	padding-top: 0.625rem;
 }
@@ -57,6 +57,10 @@
 .input {
 	@include input-theme;
 	padding: 22px 14px 7px 14px;
+
+	&.no-label {
+		padding: 0.6rem;
+	}
 
 	&.number {
 		width: 5rem;
@@ -164,9 +168,18 @@
 		cursor: auto;
 	}
 
-	&.waiting {
-		box-shadow: 0 3.5px 0 0 #868588;
+	@mixin greyed-out($shadow) {
 		background-color: #afafaf;
+		box-shadow: 0 #{$shadow}px 0 0 #868588;
+	}
+
+	&.pressed {
+		@include greyed-out("1.5");
+		transform: translateY(3px);
+	}
+
+	&.waiting {
+		@include greyed-out("3.5");
 	}
 }
 

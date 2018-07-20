@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import AppTemplate from "../Templates/AppTemplate";
 import MealInfo from "../Templates/MealInfo";
 import { Pane } from "../Templates/Templates";
+import AddMeal from "../AddMeal";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -59,12 +60,10 @@ class Meals extends Component {
 					</div>
 					<div
 						style={{
-							display: "grid",
-							gridTemplate: "auto auto auto / 1fr 1fr 1fr 1fr",
-							gridAutoFlow: "row dense",
 							margin: "1rem 0 0 3rem"
 						}}
 					>
+						<AddMeal />
 						{this.renderMeals()}
 					</div>
 				</div>

@@ -25,11 +25,18 @@ export const Logo = ({ ...props }) => (
 	</span>
 );
 
-export const Pane = ({ children, ...props }) => (
-	<div className={style["pane"]} {...props}>
-		{children}
-	</div>
-);
+export const Pane = ({ children, center, fade, ...props }) => {
+	const classNames = cs(style["pane"], {
+		[style["center"]]: center,
+		[style["fade"]]: fade
+	});
+
+	return (
+		<div className={classNames} {...props}>
+			{children}
+		</div>
+	);
+};
 
 export const Direction = ({ children, ...props }) => (
 	<div className={style["direction"]} {...props}>
@@ -118,7 +125,10 @@ export class MenuButton extends Component {
 		const children = Children.toArray(this.props.children);
 		const MenuIcon = children.shift();
 		return (
-			<div ref={this.menuButton} style={{ position: "relative", marginRight: "2rem" }}>
+			<div
+				ref={this.menuButton}
+				style={{ position: "relative", marginRight: "2rem" }}
+			>
 				<button className={classNames} onClick={this.toggle}>
 					{MenuIcon}
 					<DownIcon open={this.state.open} />
@@ -154,17 +164,13 @@ export const MenuItem = ({ top, children, ...props }) => {
 };
 
 export const SideBar = ({ children }) => (
-	<div className={style["sidebar"]}>
-		{children}
-	</div>
+	<div className={style["sidebar"]}>{children}</div>
 );
 
 export const SideBarItem = ({ children, to }) => (
 	<Link to={to}>
 		<div className={style["sidebar-item"]}>
-			<div className={style["sidebar-contents"]}>
-				{children}
-			</div>
+			<div className={style["sidebar-contents"]}>{children}</div>
 		</div>
 	</Link>
 );
