@@ -3,3 +3,10 @@
 	grid-template-columns: 80% 20%;
 	grid-column-gap: 0.25rem;	
 }
+
+.close {
+	position: absolute;
+	top: 0;
+	right: -1.75rem;
+	cursor: pointer;	
+}

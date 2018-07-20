@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import style from "./AddMeal.scss";
 import { Button, InputList, Input, Label, SmallLabel } from "./UI/Inputs";
-import { AddIcon } from "./Icons/Icons";
+import { AddIcon, CloseIcon } from "./Icons/Icons";
 import { Pane, Horizontal } from "./Templates/Templates";
 
 export default class AddMeal extends Component {
@@ -14,9 +14,10 @@ export default class AddMeal extends Component {
 		};
 	}
 
-	setActive = event => this.setState({ active: true });
+	toggleActive = event => this.setState({ active: !this.state.active });
 
-	updateValue = event => this.setState({ [event.target.name]: event.target.value });
+	updateValue = event =>
+		this.setState({ [event.target.name]: event.target.value });
 
 	updateServes = event => {
 		let { value } = event.target;
@@ -33,7 +34,7 @@ export default class AddMeal extends Component {
 	onServingsBlur = event => {
 		if (this.state.serves === "") {
 			this.setState({ serves: this.defaultState.serves });
-		}	
+		}
 	};
 
 	render() {
@@ -42,18 +43,28 @@ export default class AddMeal extends Component {
 			<Horizontal style={{ justifyContent: "flex-start" }}>
 				<div>
 					<Button
+						style={{ marginTop: "0.3rem" }}
 						pressed={active}
 						disabled={active}
-						onClick={this.setActive}
+						onClick={this.toggleActive}
 					>
 						<AddIcon />
 					</Button>
 				</div>
 				{active && (
 					<Pane
-						style={{ padding: "0.5rem", marginLeft: "1rem" }}
+						style={{
+							padding: "0.5rem",
+							marginLeft: "0.5rem",
+							position: "relative"
+						}}
 						fade
 					>
+						<CloseIcon
+							className={style["close"]}
+							onClick={this.toggleActive}
+						/>
+
 						<div className={style["top"]}>
 							<Input
 								name="title"
