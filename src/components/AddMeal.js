@@ -1,31 +1,22 @@
 import React, { Component } from "react";
+import style from "./AddMeal.scss";
 import { Button, InputList, Input, Label, SmallLabel } from "./UI/Inputs";
 import { AddIcon } from "./Icons/Icons";
 import { Pane, Horizontal } from "./Templates/Templates";
-import { keys } from "../Utility";
 
 export default class AddMeal extends Component {
 	constructor(props) {
 		super(props);
 		this.state = this.defaultState = {
 			active: false,
-			title: { value: "", complete: false },
-			serves: { value: 1, complete: false }
+			title: "",
+			serves: 1
 		};
 	}
 
 	setActive = event => this.setState({ active: true });
 
-	updateValue = event => {
-		const attribute = this.state[event.target.name];
-		this.setState({ [event.target.name]: { ...attribute, value: event.target.value } });
-	}
-
-	completeValue = event => {
-		const attribute = this.state[event.target.name];
-		if (event.keyCode === keys.ENTER && attribute.value !== "")
-			this.setState({ [event.target.name]: { ...attribute, complete: true } });
-	};
+	updateValue = event => this.setState({ [event.target.name]: event.target.value });
 
 	updateServes = event => {
 		let { value } = event.target;
@@ -36,15 +27,13 @@ export default class AddMeal extends Component {
 		} else if (value.length > 2) {
 			return;
 		}
-		this.setState({ serves: { ...this.state[event.target.name], value } });
+		this.setState({ serves: value });
 	};
 
 	onServingsBlur = event => {
-		if (this.state.serves.value === "") {
+		if (this.state.serves === "") {
 			this.setState({ serves: this.defaultState.serves });
-		} else {
-			this.setState({ serves: {...this.state.serves, complete: true } });
-		}
+		}	
 	};
 
 	render() {
@@ -65,39 +54,33 @@ export default class AddMeal extends Component {
 						style={{ padding: "0.5rem", marginLeft: "1rem" }}
 						fade
 					>
-						<InputList style={{ paddingTop: "0" }}>
+						<div className={style["top"]}>
 							<Input
 								name="title"
-								value={title.value}
+								value={title}
 								onChange={this.updateValue}
 								onKeyDown={this.completeValue}
-								placeholder="Meal Name"
 								autoFocus
-								noLabel
-							/>
-							{title.complete && (
-								<Input
-									name="serves"
-									style={{ width: "4rem" }}
-									value={serves.value}
-									onFocus={event => event.target.select()}
-									onChange={this.updateServes}
-									onKeyDown={this.completeValue}
-									onBlur={this.onServingsBlur}
-									type="number"
-									min={1}
-									max={99}
-									autoFocus
-									number
-									noUnits
-								>
-									<SmallLabel style={{ left: "-0.6rem" }}>
-										Serves
-									</SmallLabel>
-								</Input>
-							)}
-							{serves.complete && <div>Hello</div>}
-						</InputList>
+							>
+								<Label>Meal Name</Label>
+							</Input>
+							<Input
+								name="serves"
+								style={{ width: "4rem", paddingTop: "19px" }}
+								value={serves}
+								onFocus={event => event.target.select()}
+								onChange={this.updateServes}
+								onKeyDown={this.completeValue}
+								onBlur={this.onServingsBlur}
+								type="number"
+								min={1}
+								max={99}
+								number
+								noUnits
+							>
+								<Label>Serves</Label>
+							</Input>
+						</div>
 					</Pane>
 				)}
 			</Horizontal>
