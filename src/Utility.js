@@ -1,3 +1,9 @@
+import axios from "axios";
+axios.defaults.withCredentials = true;
+export const http = axios.create({
+	baseURL: "http://localhost:3000/"
+});
+
 export const range = (start, stop, step = 1) =>
 	Array((stop - start) / step)
 		.fill(start)
