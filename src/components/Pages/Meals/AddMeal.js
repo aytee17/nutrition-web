@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from "react";
 import style from "./AddMeal.scss";
-import { http } from "../Utility";
-import { Button, InputList, Input, Label, SmallLabel } from "./UI/Inputs";
-import { AddIcon, CloseIcon } from "./Icons/Icons";
-import { Pane, Horizontal } from "./Templates/Templates";
-import SearchList from "./SearchList/SearchList";
+import { http } from "../../../Utility";
+import { Button, InputList, Input, Label, SmallLabel } from "../../UI/Inputs";
+import { AddIcon, CloseIcon } from "../../Icons/Icons";
+import { Pane, Horizontal } from "../../Templates/Templates";
+import SearchList from "../../SearchList/SearchList";
 
 export default class AddMeal extends Component {
 	constructor(props) {

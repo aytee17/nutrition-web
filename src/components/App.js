@@ -11,7 +11,7 @@ import ForgotPassword from "./Pages/ForgotPassword";
 import NewPassword from "./Pages/NewPassword";
 
 import Dashboard from "./Pages/Dashboard";
-import Meals from "./Pages/Meals";
+import Meals from "./Pages/Meals/Meals";
 
 import { hot } from "react-hot-loader";
 
