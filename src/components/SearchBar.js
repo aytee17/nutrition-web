@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import style from "../style/main.scss";
+import style from "./SearchBar.scss";
 
 const ENTER = 13;
 const UP = 38;

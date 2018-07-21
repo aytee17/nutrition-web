@@ -1,10 +1,6 @@
 import React, { Component } from "react";
+import style from "./List.scss";
 import cs from "classnames";
-
-//import SmallInput from "../components/SmallInput";
-import { Input } from "./FormELements";
-
-import style from "../style/main.scss";
 
 const List = ({
 	activeItem,
@@ -19,7 +15,7 @@ const List = ({
 			const isActiveItem = id === activeItem;
 
 			const readyToSubmit = isActiveItem ? activeItem.ready : false;
-			const classes = cs(style["item"], {
+			const classNames = cs(style["item"], {
 				[style["active"]]: isActiveItem,
 				[style["ready"]]: readyToSubmit
 			});
@@ -32,7 +28,7 @@ const List = ({
 			return (
 				<ListItem
 					key={id}
-					className={classes}
+					className={classNames}
 					onClick={onClick}
 					onMouseOver={onMouseOver}
 					onMouseOut={onMouseOut}

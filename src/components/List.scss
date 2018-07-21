@@ -1,0 +1,63 @@
+.list {
+	position: absolute;
+	padding: 0px;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+	width: 100%;
+	border-radius: 4px;
+	display: block;
+	background-color: white;
+	right: 0;
+}
+
+.item {
+	cursor: pointer;
+	display: grid;
+	grid-template-columns: 60% 40%;
+	padding: 10px;
+	/*border: 1px solid #7E7E7E;*/
+	border: 1px solid transparent;
+	min-height: 20px;
+}
+
+.active {
+	background-color: rgba(0, 0, 0, 0.05);
+	border-radius: 4px;
+}
+
+.ready {
+	border: 1px solid #74cf6e;
+}
+
+.ingredient-name {
+	display: inline-block;
+	margin-left: 5px;
+}
+
+.prompt {
+	display: inline-block;
+	margin-left: 5px;
+	animation-name: slideInLeft;
+	animation-fill-mode: forwards;
+	animation-duration: 0.2s;
+}
+
+@keyframes slideInLeft {
+	from {
+		transform: translate3d(-10%, 0, 0);
+		display: none;
+	}
+
+	to {
+		transform: translate3d(0, 0, 0);
+		display: inline-block;
+	}
+}
+
+.amount-input {
+	display: inline-block;
+	width: 40px;
+	outline: none;
+	text-align: right;
+	border: none;
+	font-size: 0.8em;
+}
