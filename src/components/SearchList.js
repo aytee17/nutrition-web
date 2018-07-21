@@ -46,7 +46,7 @@ export default class SearchList extends PureComponent {
 		const { items, activeItem } = this.state;
 		this.setState(this.defaultState);
 		this.searchBar.current.focus();
-		this.props.addToList(items[activeItem]);
+		this.props.addToList(items[activeItem], () => this.searchBar.current.focus());
 	};
 
 	render() {

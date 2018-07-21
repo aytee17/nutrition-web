@@ -45,7 +45,7 @@ export default class AddMeal extends Component {
 		http.get(endpoint).then(response => responseHandler(response.data));
 	};
 
-	addIngredient = ingredient =>
+	addIngredient = (ingredient, focusSearch) =>
 		this.setState({ ingredients: [...this.state.ingredients, ingredient] });
 
 	render() {
