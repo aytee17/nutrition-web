@@ -17,7 +17,9 @@ export default class AddMeal extends Component {
 		};
 	}
 
-	toggleActive = event => this.setState({ active: !this.state.active });
+	open = event => this.setState({ active: true });
+
+	close = event => this.setState(this.defaultState);
 
 	updateValue = event =>
 		this.setState({ [event.target.name]: event.target.value });
@@ -56,7 +58,7 @@ export default class AddMeal extends Component {
 					<Button
 						pressed={active}
 						disabled={active}
-						onClick={this.toggleActive}
+						onClick={this.open}
 					>
 						<AddIcon />
 					</Button>
@@ -73,7 +75,7 @@ export default class AddMeal extends Component {
 						>
 							<CloseIcon
 								className={style["close"]}
-								onClick={this.toggleActive}
+								onClick={this.close}
 							/>
 							<div className={style["top"]}>
 								<Input
