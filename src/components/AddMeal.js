@@ -107,12 +107,3 @@ export default class AddMeal extends Component {
 		);
 	}
 }
-
-/**
- * 								<input
-									className={style["search"]}
-									type="text"
-									placeholder="Search for an ingredient"
-								/>
-
- */
