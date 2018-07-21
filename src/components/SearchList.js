@@ -1,11 +1,10 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import _ from "lodash";
 import SearchBar from "./SearchBar";
 import List from "./List";
 import { Input } from "./FormElements";
-import { http } from "../Utility";
 
-export default class SearchList extends Component {
+export default class SearchList extends PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = this.defaultState = {
@@ -14,18 +13,9 @@ export default class SearchList extends Component {
 			items: {},
 			order: []
 		};
-	}
+		this.searchBar = React.createRef();
 
-	updateSearchTerm = searchTerm => this.setState({ searchTerm });
-
-	getItems = searchTerm => {
-		if (searchTerm === "") {
-			this.setState(this.defaultState);
-			return;
-		}
-		const endpoint = `/ingredients?q=${searchTerm}`;
-		http.get(endpoint).then(response => {
-			const items = response.data;
+		const itemHandler = items => {
 			if (items.length > 0) {
 				this.setState({
 					items: _.mapKeys(items, "id"),
@@ -33,22 +23,37 @@ export default class SearchList extends Component {
 					activeItem: items[0].id
 				});
 			}
-		});
+		};
+		this.fetchItems = this.props.createItemFetcher(itemHandler);
+	}
+
+	updateSearchTerm = searchTerm => this.setState({ searchTerm });
+
+	runSearch = searchTerm => {
+		if (searchTerm === "") {
+			this.setState(this.defaultState);
+			return;
+		}
+		this.fetchItems(searchTerm);
 	};
 
 	setActiveItem = id => this.setState({ activeItem: id });
 
 	clearActiveItem = () => this.setState({ activeItem: undefined });
 
-	addActiveItem = () => {};
-
-	/* updateAmount, readySubmit */
+	addActiveItem = details => {
+		console.log("add");
+		const { items, activeItem } = this.state;
+		this.setState(this.defaultState);
+		this.searchBar.current.focus();
+		this.props.addToList(items[activeItem]);
+	};
 
 	render() {
 		const { searchTerm, activeItem, items, order } = this.state;
 		const {
 			updateSearchTerm,
-			getItems,
+			runSearch,
 			setActiveItem,
 			clearActiveItem,
 			addActiveItem
@@ -59,12 +64,13 @@ export default class SearchList extends Component {
 					{...{
 						searchTerm,
 						updateSearchTerm,
-						getItems,
+						runSearch,
 						setActiveItem,
 						activeItem,
 						clearActiveItem,
 						order,
-						addActiveItem
+						addActiveItem,
+						ref: this.searchBar
 					}}
 				/>
 				<List
@@ -72,6 +78,7 @@ export default class SearchList extends Component {
 						setActiveItem,
 						activeItem,
 						clearActiveItem,
+						addActiveItem,
 						items,
 						order
 					}}

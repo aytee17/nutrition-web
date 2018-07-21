@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import style from "./AddMeal.scss";
+import { http } from "../Utility";
 import { Button, InputList, Input, Label, SmallLabel } from "./UI/Inputs";
 import { AddIcon, CloseIcon } from "./Icons/Icons";
 import { Pane, Horizontal } from "./Templates/Templates";
@@ -11,7 +12,8 @@ export default class AddMeal extends Component {
 		this.state = this.defaultState = {
 			active: false,
 			title: "",
-			serves: 1
+			serves: 1,
+			ingredients: []
 		};
 	}
 
@@ -37,6 +39,13 @@ export default class AddMeal extends Component {
 			this.setState({ serves: this.defaultState.serves });
 		}
 	};
+
+	createIngredientFetcher = responseHandler => searchTerm => {
+		const endpoint = `/ingredients?q=${searchTerm}`;
+		http.get(endpoint).then(response => responseHandler(response.data));
+	};
+
+	addIngredient = ingredient => {};
 
 	render() {
 		const { active, title, serves } = this.state;
@@ -98,7 +107,10 @@ export default class AddMeal extends Component {
 							<div className={style["section"]}>
 								<strong>Ingredients</strong>
 								<div className={style["list"]} />
-								<SearchList/>
+								<SearchList
+									addToList={this.addIngredient}
+									createItemFetcher={this.createIngredientFetcher}
+								/>
 							</div>
 						</Pane>
 					</div>

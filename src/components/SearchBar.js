@@ -1,18 +1,11 @@
 import React, { Component } from "react";
 import style from "./SearchBar.scss";
+import { keys } from "../Utility"; 
 
-const ENTER = 13;
-const UP = 38;
-const DOWN = 40;
-
-export default class SearchBar extends Component {
+class SearchBar extends Component {
 	constructor(props) {
 		super(props);
 		this.wait = null;
-	}
-
-	componentDidUpdate() {
-		this.input.focus();
 	}
 
 	onInputChange = event => {
@@ -28,16 +21,16 @@ export default class SearchBar extends Component {
 
 	search(searchTerm) {
 		this.props.updateSearchTerm(searchTerm);
-		this.props.getItems(searchTerm);
+		this.props.runSearch(searchTerm);
 	}
 
 	onKeyDown = event => {
 		const keyPressed = event.keyCode;
-		if (keyPressed == UP || keyPressed == DOWN) {
+		if (keyPressed == keys.UP || keyPressed == keys.DOWN) {
 			event.preventDefault();
 			this.cycleItems(keyPressed);
-		} else if (keyPressed == ENTER && this.props.activeItem) {
-			this.props.addItem(this.props.activeItem);
+		} else if (keyPressed == keys.ENTER && this.props.activeItem) {
+			this.props.addActiveItem();
 		}
 	}
 
@@ -45,7 +38,7 @@ export default class SearchBar extends Component {
 		const { order, setActiveItem, activeItem, clearActiveItem } = this.props;
 
 		if (!activeItem) {
-			const id = keyPressed === UP ? order[order.length - 1] : order[0];
+			const id = keyPressed === keys.UP ? order[order.length - 1] : order[0];
 			setActiveItem(id);
 		} else {
 			const activeIndex = order.findIndex(itemId => {
@@ -53,7 +46,7 @@ export default class SearchBar extends Component {
 			});
 
 			let nextIndex =
-				keyPressed === UP ? activeIndex - 1 : activeIndex + 1;
+				keyPressed === keys.UP ? activeIndex - 1 : activeIndex + 1;
 
 			if (nextIndex >= order.length || nextIndex < 0) {
 				clearActiveItem();
@@ -71,10 +64,13 @@ export default class SearchBar extends Component {
 				value={this.props.searchTerm}
 				onChange={this.onInputChange}
 				onKeyDown={this.onKeyDown}
-				ref={input => {
-					this.input = input;
-				}}
+				ref={this.props.forwardedRef}
 			/>
 		);
 	}
 }
+
+export default React.forwardRef((props, ref) => {
+	return <SearchBar {...props} forwardedRef={ref} />
+});
+
