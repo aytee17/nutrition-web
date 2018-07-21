@@ -1,6 +1,5 @@
 import React from "react";
 import style from "./BarChart.scss";
-import { Spring } from "react-spring";
 
 export default function BarChart({
 	title,
