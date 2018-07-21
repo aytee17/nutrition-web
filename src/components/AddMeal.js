@@ -45,10 +45,11 @@ export default class AddMeal extends Component {
 		http.get(endpoint).then(response => responseHandler(response.data));
 	};
 
-	addIngredient = ingredient => {};
+	addIngredient = ingredient =>
+		this.setState({ ingredients: [...this.state.ingredients, ingredient] });
 
 	render() {
-		const { active, title, serves } = this.state;
+		const { active, title, serves, ingredients } = this.state;
 		return (
 			<Horizontal style={{ justifyContent: "flex-start" }}>
 				<div>
@@ -106,10 +107,16 @@ export default class AddMeal extends Component {
 							</div>
 							<div className={style["section"]}>
 								<strong>Ingredients</strong>
-								<div className={style["list"]} />
+								<div className={style["list"]}>
+									{ingredients.map(i => {
+										return <div>{i.name}</div>;
+									})}
+								</div>
 								<SearchList
 									addToList={this.addIngredient}
-									createItemFetcher={this.createIngredientFetcher}
+									createItemFetcher={
+										this.createIngredientFetcher
+									}
 								/>
 							</div>
 						</Pane>
