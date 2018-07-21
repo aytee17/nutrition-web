@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import style from "./SearchBar.scss";
-import { keys } from "../Utility"; 
+import { keys } from "../../Utility"; 
 
 class SearchBar extends Component {
 	constructor(props) {

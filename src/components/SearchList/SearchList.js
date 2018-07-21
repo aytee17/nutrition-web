@@ -2,7 +2,6 @@ import React, { PureComponent } from "react";
 import _ from "lodash";
 import SearchBar from "./SearchBar";
 import List from "./List";
-import { Input } from "./FormElements";
 
 export default class SearchList extends PureComponent {
 	constructor(props) {
