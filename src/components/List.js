@@ -20,9 +20,10 @@ const List = ({
 				[style["ready"]]: readyToSubmit
 			});
 
-			const onClick = () => 1 /*selectItem(id);*/
+			const onClick = () => addActiveItem();
 
 			const onMouseOver = () => setActiveItem(id);
+			
 			const onMouseOut = () => clearActiveItem();
 
 			return (
@@ -56,8 +57,7 @@ const ListItem = ({
 		onMouseOver={onMouseOver}
 		onMouseOut={onMouseOut}
 	>
-		<div className={style["ingredient-name"]}>{name}</div>
-		{isActive && "active"}
+		<div className={style["item-name"]}>{name}</div>
 	</div>
 );
 
