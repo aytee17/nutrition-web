@@ -17,7 +17,6 @@ class VerifyAccount extends Component {
 		axios
 			.get(`http://localhost:3000/verify/${id}/${hashID}/${hash}`)
 			.then(response => {
-				console.log(response);
 				this.props.login(response.data);
 				this.setState({ verified: true });
 			})

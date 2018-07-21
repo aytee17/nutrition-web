@@ -110,17 +110,12 @@ const LoginForm = withFormik({
 		axios
 			.post("http://localhost:3000/login", values)
 			.then(response => {
-				console.log(response);
 				if (response.data.verified == false) {
 					props.loggedInUnverified(response.data);
 				}
 				props.login(response.data);
 			})
-			.then(response => {
-				console.log("is this undefined?", response);
-			})
 			.catch(error => {
-				console.log(error);
 				setSubmitting(false);
 				setErrors({ general: error.response.data.message });
 			});

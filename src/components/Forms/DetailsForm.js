@@ -151,16 +151,13 @@ const DetailsForm = withFormik({
 		weight: Yup.number().required("is required")
 	}),
 	handleSubmit: (values, { props, setSubmitting, setErrors, setStatus }) => {
-		console.log(values);
 		values.activity_level = values.activity_level.toString();
 		axios
 			.put("http://localhost:3000/userDetails", values)
 			.then(response => {
-				console.log(response.data);
 				props.updateUser({ ...props.user, ...response.data });
 			})
 			.catch(error => {
-				console.log(error);
 				setSubmitting(false);
 			});
 	}

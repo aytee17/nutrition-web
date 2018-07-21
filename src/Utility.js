@@ -61,7 +61,6 @@ export const EER = (gender, age, weight, activity_level) => {
 		ageRange = 3;
 	}
 
-	console.log(age);
 	const [ a, b ] = bmrTable[gender][ageRange];
 	return Math.floor((a* parseInt(weight) + b)*activityLevels[activity_level]);
 };
@@ -86,7 +85,6 @@ export const proteinRequirement = (gender, age) => {
 	} else {
 		ageRange = 5;
 	}
-	console.log(gender, ageRange);
 	return proteinTable[gender][ageRange];
 }
 

@@ -274,16 +274,11 @@ const SignUpForm = withFormik({
 			.post("http://localhost:3000/signup", transformedValues)
 			.then(response => {
 				setSubmitting(false);
-				console.log(response);
-				console.log("success");
 				const { id, hashid, email } = response.data;
 				props.setSubmitted(true, id, hashid, email);
 			})
 			.catch(error => {
 				setSubmitting(false);
-				console.log(error);
-				console.log("why am i here?");
-
 				setErrors(transformErrors(error.response.data));
 			});
 	}

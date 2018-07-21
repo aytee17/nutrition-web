@@ -16,7 +16,6 @@ export default class MealInfo extends Component {
 
 	onServingsChange = event => {
 		let value = event.target.value;
-		console.log("value", value.length);
 		if (value.length == 0) {
 			value = ""
 		} else if (value < 1) {

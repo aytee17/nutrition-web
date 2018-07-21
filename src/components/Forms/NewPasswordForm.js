@@ -72,7 +72,6 @@ const NewPasswordForm = withFormik({
 			.then(response => {
 				props.setSubmitted();
 				setSubmitting(false);
-				console.log(response);
 			}).catch(err => {
 				setSubmitting(false)
 			});

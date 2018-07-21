@@ -34,7 +34,6 @@ export const getMeals = () => {
 	const endpoint = "/meals";
 	return dispatch =>
 		http.get(endpoint).then(response => {
-			console.log(response.data);
 			dispatch({
 				type: GET_MEALS,
 				payload: { ...response.data, loaded: true }
@@ -44,7 +43,6 @@ export const getMeals = () => {
 
 const processUser = user => {
 	const age = Math.floor((Date.now() - new Date(user.dob)) / 31536000000);
-	console.log("age in processUser", age);
 	const { weight, activity_level, gender } = user;
 	if (weight && activity_level) {
 		user = {
@@ -105,7 +103,6 @@ export const getIngredients = searchTerm => {
 	}
 
 	return dispatch => {
-		console.log("dispatch in function: ", dispatch.toString());
 		const endpoint = `/ingredients?q=${searchTerm}`;
 		return http
 			.get(endpoint, {
