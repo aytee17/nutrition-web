@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import cs from "classnames";
 
-import ListItem from "./ListItem";
 //import SmallInput from "../components/SmallInput";
 import { Input } from "./FormELements";
 
@@ -9,15 +8,15 @@ import style from "../style/main.scss";
 
 const List = ({
 	activeItem,
-	hoverItem,
+	setActiveItem,
 	clearActiveItem,
 	order,
 	items,
-	children
+	addActiveItem
 }) => {
 	const renderList = () => {
 		return order.map(id => {
-			const isActiveItem = id === activeItem.id;
+			const isActiveItem = id === activeItem;
 
 			const readyToSubmit = isActiveItem ? activeItem.ready : false;
 			const classes = cs(style["item"], {
@@ -27,7 +26,7 @@ const List = ({
 
 			const onClick = () => 1 /*selectItem(id);*/
 
-			const onMouseOver = () => hoverItem(id);
+			const onMouseOver = () => setActiveItem(id);
 			const onMouseOut = () => clearActiveItem();
 
 			return (
@@ -39,9 +38,7 @@ const List = ({
 					onMouseOut={onMouseOut}
 					isActive={isActiveItem}
 					name={items[id].name}
-				>
-					{children}
-				</ListItem>
+				/>
 			);
 		});
 	};
@@ -55,8 +52,7 @@ const ListItem = ({
 	onMouseOver,
 	onMouseOut,
 	name,
-	isActive,
-	children
+	isActive
 }) => (
 	<div
 		className={className}
@@ -65,7 +61,7 @@ const ListItem = ({
 		onMouseOut={onMouseOut}
 	>
 		<div className={style["ingredient-name"]}>{name}</div>
-		{isActive && children}
+		{isActive && "active"}
 	</div>
 );
 

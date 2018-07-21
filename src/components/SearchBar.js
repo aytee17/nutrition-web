@@ -17,10 +17,13 @@ export default class SearchBar extends Component {
 
 	onInputChange = event => {
 		const value = event.target.value;
+		this.search(value);
+		/**
 		clearTimeout(this.wait);
 		this.wait = setTimeout(() => {
 			this.search(value);
 		}, 250);
+		**/
 	}
 
 	search(searchTerm) {
@@ -33,30 +36,29 @@ export default class SearchBar extends Component {
 		if (keyPressed == UP || keyPressed == DOWN) {
 			event.preventDefault();
 			this.cycleItems(keyPressed);
-		} else if (keyPressed == ENTER && this.props.activeItem.id) {
+		} else if (keyPressed == ENTER && this.props.activeItem) {
 			this.props.addItem(this.props.activeItem);
 		}
 	}
 
 	cycleItems(keyPressed) {
-		const { order, hoverItem, activeItem, clearActiveItem } = this.props;
+		const { order, setActiveItem, activeItem, clearActiveItem } = this.props;
 
-		if (!activeItem.id) {
+		if (!activeItem) {
 			const id = keyPressed === UP ? order[order.length - 1] : order[0];
-			hoverItem(id);
+			setActiveItem(id);
 		} else {
 			const activeIndex = order.findIndex(itemId => {
-				return itemId === activeItem.id;
+				return itemId === activeItem;
 			});
 
 			let nextIndex =
 				keyPressed === UP ? activeIndex - 1 : activeIndex + 1;
-			console.log("next index", nextIndex);
 
 			if (nextIndex >= order.length || nextIndex < 0) {
 				clearActiveItem();
 			} else {
-				hoverItem(order[nextIndex]);
+				setActiveItem(order[nextIndex]);
 			}
 		}
 	}
@@ -72,7 +74,6 @@ export default class SearchBar extends Component {
 				ref={input => {
 					this.input = input;
 				}}
-				autoFocus
 			/>
 		);
 	}
