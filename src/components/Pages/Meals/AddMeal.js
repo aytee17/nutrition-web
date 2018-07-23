@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from "react";
 import style from "./AddMeal.scss";
+import cs from "classnames";
 import { http } from "../../../Utility";
 import { Button, InputList, Input, Label, SmallLabel } from "../../UI/Inputs";
 import { AddIcon, CloseIcon } from "../../Icons/Icons";
 import { Pane, Horizontal } from "../../Templates/Templates";
 import SearchList from "../../SearchList/SearchList";
+import DraggableList from "../../DraggableList/DraggableList";
 
 export default class AddMeal extends Component {
 	constructor(props) {
@@ -47,8 +49,9 @@ export default class AddMeal extends Component {
 		http.get(endpoint).then(response => responseHandler(response.data));
 	};
 
-	addIngredient = (ingredient, focusSearch) =>
+	addIngredient = (ingredient, focusSearch) => {
 		this.setState({ ingredients: [...this.state.ingredients, ingredient] });
+	};
 
 	render() {
 		const { active, title, serves, ingredients } = this.state;
@@ -110,9 +113,15 @@ export default class AddMeal extends Component {
 							<div className={style["section"]}>
 								<strong>Ingredients</strong>
 								<div className={style["list"]}>
-									{ingredients.map(i => {
-										return <div>{i.name}</div>;
-									})}
+									<DraggableList
+										items={ingredients}
+										setItems={items =>
+											this.setState({
+												ingredients: items
+											})
+										}
+										itemComponent={IngredientListItem}
+									/>
 								</div>
 								<SearchList
 									addToList={this.addIngredient}
@@ -128,3 +137,10 @@ export default class AddMeal extends Component {
 		);
 	}
 }
+
+const IngredientListItem = ({ children, isDragging }) => {
+	const classNames = cs(style["list-item"], {
+		[style["dragging"]]: isDragging
+	});
+	return <div className={classNames}>{children}</div>;
+};
