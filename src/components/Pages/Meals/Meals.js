@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import AppTemplate from "../../Templates/AppTemplate";
-import MealInfo from "../../Templates/MealInfo";
+import MealInfo from "./MealInfo";
 import { Pane } from "../../Templates/Templates";
 import AddMeal from "./AddMeal";
 
@@ -63,7 +63,7 @@ class Meals extends Component {
 							margin: "1rem 0 0 3rem"
 						}}
 					>
-						<AddMeal />
+						<AddMeal user={this.props.user}/>
 						{this.renderMeals()}
 					</div>
 				</div>

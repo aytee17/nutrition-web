@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import style from "./MealInfo.scss";
-import BarChart from "./BarChart";
-import { Input, SmallLabel } from "../UI/Inputs";
-import { Horizontal } from "./Templates";
+import Meter from "../../Meter/Meter";
+import { Input, SmallLabel } from "../../UI/Inputs";
+import { Horizontal } from "../../Templates/Templates";
 
 export default class MealInfo extends Component {
 	constructor(props) {
@@ -73,26 +73,19 @@ export default class MealInfo extends Component {
 						</Input>
 					</Horizontal>
 					<br />
-					<BarChart
+					<Meter
 						title="Energy"
 						units="kJ"
 						total={user.eer}
 						amount={this.calculateAmount(meal.totalEnergy)}
 						color="#45b0e6"
 					/>
-					<BarChart
+					<Meter
 						title="Protein"
 						units="g"
 						total={user.proteinRequirement}
 						amount={this.calculateAmount(meal.totalProtein)}
 						color="#D32F2F"
-						/**
-						displayValue={value => {
-							if (value > 100) {
-								return `${value/100}x RDI`
-							}
-						}}
-						**/
 					/>
 				</div>
 				<div>

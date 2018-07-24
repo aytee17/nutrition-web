@@ -6,6 +6,7 @@ import { http, keys } from "../../../Utility";
 import { Button, InputList, Input, Label, SmallLabel } from "../../UI/Inputs";
 import { AddIcon, CloseIcon } from "../../Icons/Icons";
 import { Pane, Horizontal } from "../../Templates/Templates";
+import Meter from "../../Meter/Meter";
 import SearchList from "../../SearchList/SearchList";
 import DraggableList from "../../DraggableList/DraggableList";
 
@@ -18,7 +19,8 @@ export default class AddMeal extends Component {
 			serves: 1,
 			ingredients: {},
 			order: [],
-			inputRefs: {}
+			totalEnergy: 0,
+			totalProtein: 0
 		};
 		this.searchBar = React.createRef();
 	}
@@ -27,8 +29,7 @@ export default class AddMeal extends Component {
 
 	close = event => this.setState(this.defaultState);
 
-	updateValue = event =>
-		this.setState({ [event.target.name]: event.target.value });
+	updateTitle = event => this.setState({ title: event.target.value });
 
 	updateServes = event => {
 		let { value } = event.target;
@@ -54,24 +55,69 @@ export default class AddMeal extends Component {
 	};
 
 	addIngredient = ingredient => {
-		const exists = this.state.ingredients[ingredient.id];
+		const { ingredients, order, totalProtein, totalEnergy } = this.state;
+		const exists = ingredients[ingredient.id];
 		if (exists) {
 			exists.ref.current.select();
 		} else {
-			this.setState({
-				order: [...this.state.order, ingredient.id],
-				ingredients: {
-					...this.state.ingredients,
-					[ingredient.id]: { ...ingredient, ref: React.createRef() }
-				}
-			});
+			this.setState(
+				{
+					order: [...order, ingredient.id],
+					ingredients: {
+						...ingredients,
+						[ingredient.id]: {
+							...ingredient,
+							amount: 0,
+							ref: React.createRef()
+						}
+					}
+				},
+				() => this.state.ingredients[ingredient.id].ref.current.select()
+			);
 		}
 	};
 
 	focusSearchBar = () => this.searchBar.current.focus();
 
+	updateAmount = (id, amount) => {
+		const ingredient = this.state.ingredients[id];
+		const modifier = ingredient.units === "amount" ? amount : amount / 100;
+		this.setState(
+			{
+				ingredients: {
+					...this.state.ingredients,
+					[id]: { ...ingredient, amount }
+				}
+			},
+			() =>
+				this.setState({
+					totalProtein: this.accumulate("protein"),
+					totalEnergy: this.accumulate("energy")
+				})
+		);
+	};
+
+	accumulate = attribute =>
+		this.state.order
+			.map(id => {
+				const ingredient = this.state.ingredients[id];
+				const { amount, units } = ingredient;
+				const modifier = units === "amount" ? amount : amount / 100;
+				return ingredient[attribute] * modifier;
+			})
+			.reduce((total, current) => total + current);
+
 	render() {
-		const { active, title, serves, ingredients, order } = this.state;
+		const {
+			active,
+			title,
+			serves,
+			ingredients,
+			order,
+			totalEnergy,
+			totalProtein
+		} = this.state;
+		const { user } = this.props;
 		return (
 			<Horizontal style={{ justifyContent: "flex-start" }}>
 				<div>
@@ -87,7 +133,7 @@ export default class AddMeal extends Component {
 					<div>
 						<Pane
 							style={{
-								padding: "0.7rem",
+								padding: "1rem",
 								marginLeft: "0.5rem",
 								position: "relative"
 							}}
@@ -97,30 +143,24 @@ export default class AddMeal extends Component {
 								className={style["close"]}
 								onClick={this.close}
 							/>
+							<Input
+								name="title"
+								value={title}
+								onChange={this.updateTitle}
+								placeholder="Meal name"
+								autoFocus
+								noLabel
+							/>
 							<div className={style["top"]}>
-								<Input
-									name="title"
-									value={title}
-									onChange={this.updateValue}
-									onKeyDown={this.completeValue}
-									placeholder="Meal name"
-									autoFocus
-									noLabel
-									style={{
-										fontSize: "1.1rem",
-										height: "3.04rem"
-									}}
-								/>
 								<Input
 									name="serves"
 									style={{
 										width: "4rem",
-										paddingTop: "19px"
+										paddingTop: "1.2rem"
 									}}
 									value={serves}
 									onFocus={event => event.target.select()}
 									onChange={this.updateServes}
-									onKeyDown={this.completeValue}
 									onBlur={this.onServingsBlur}
 									type="number"
 									min={1}
@@ -130,6 +170,21 @@ export default class AddMeal extends Component {
 								>
 									<Label>Serves</Label>
 								</Input>
+
+								<Meter
+									title="Energy"
+									units="kJ"
+									total={user.eer}
+									amount={totalEnergy}
+									color="#45b0e6"
+								/>
+								<Meter
+									title="Protein"
+									units="g"
+									total={user.proteinRequirement}
+									amount={totalProtein}
+									color="#D32F2F"
+								/>
 							</div>
 							<div className={style["section"]}>
 								<strong>Ingredients</strong>
@@ -144,7 +199,8 @@ export default class AddMeal extends Component {
 										}
 										itemComponent={IngredientListItem}
 										componentProps={{
-											focusSearchBar: this.focusSearchBar
+											focusSearchBar: this.focusSearchBar,
+											updateAmount: this.updateAmount
 										}}
 									/>
 								</div>
@@ -167,12 +223,13 @@ export default class AddMeal extends Component {
 const IngredientListItem = ({
 	isDragging,
 	item: ingredient,
-	focusSearchBar
+	focusSearchBar,
+	updateAmount
 }) => {
 	const classNames = cs(style["list-item"], {
 		[style["dragging"]]: isDragging
 	});
-	
+
 	let units = ingredient.units;
 	units = units === "amount" ? "x" : units;
 
@@ -180,7 +237,7 @@ const IngredientListItem = ({
 		if (event.keyCode === keys.ENTER) {
 			focusSearchBar();
 		}
-	}
+	};
 
 	return (
 		<div className={classNames}>
@@ -188,8 +245,11 @@ const IngredientListItem = ({
 				<input
 					className={style["input-amount"]}
 					ref={ingredient.ref}
+					value={ingredient.amount}
+					onChange={event =>
+						updateAmount(ingredient.id, event.target.value)
+					}
 					onKeyDown={onKeyDown}
-					autoFocus
 				/>
 				<div>{units}</div>
 			</div>
