@@ -9,6 +9,7 @@ $secondary-color: rgb(69, 176, 230);
 
 $button-highlight: hsl(262, 55%, 57%);
 $transition-out: 0.2s ease-out;
+$transition-in: 0.15 ease-in;
 
 $error: #f44336;
 
@@ -23,4 +24,13 @@ $background: #e6ebf1;
 @mixin pane {
 	background-color: #fff;
 	box-sizing: border-box;
+}
+
+@mixin input-border {
+	border-radius: 3px;
+	border: $input-border;
+	outline: none;
+	&:focus {
+		border: 1px solid $main-color;
+	}
 }

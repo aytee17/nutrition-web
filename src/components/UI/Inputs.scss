@@ -20,14 +20,12 @@
 }
 
 @mixin input-theme($with-icon: "") {
-	border: $input-border;
+	@include input-border; 
 	width: 100%;
-	border-radius: 3px;
 	font-size: 1rem;
 	color: #3f3f3f;
 	color: black;
-	outline: none;
-
+	
 	&.invalid#{$with-icon} {
 		border: 1px solid #f44336;
 	}
@@ -43,10 +41,6 @@
 		transform: scale(0.85) translateY(-0.8rem);
 		transition: $transition-out;
 		opacity: 0.8;
-	}
-
-	&:focus {
-		border-color: $main-color !important;
 	}
 
 	&:required {
