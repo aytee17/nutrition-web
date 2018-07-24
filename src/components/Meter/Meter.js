@@ -1,7 +1,7 @@
 import React from "react";
-import style from "./BarChart.scss";
+import style from "./Meter.scss";
 
-export default function BarChart({
+export default function Meter({
 	title,
 	amount,
 	total,
