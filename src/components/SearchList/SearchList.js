@@ -3,7 +3,7 @@ import _ from "lodash";
 import SearchBar from "./SearchBar";
 import List from "./List";
 
-export default class SearchList extends PureComponent {
+class SearchList extends PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = this.defaultState = {
@@ -12,7 +12,6 @@ export default class SearchList extends PureComponent {
 			items: {},
 			order: []
 		};
-		this.searchBar = React.createRef();
 
 		const itemHandler = items => {
 			if (items.length > 0) {
@@ -41,11 +40,9 @@ export default class SearchList extends PureComponent {
 	clearActiveItem = () => this.setState({ activeItem: undefined });
 
 	addActiveItem = details => {
-		console.log("add");
 		const { items, activeItem } = this.state;
 		this.setState(this.defaultState);
-		this.searchBar.current.focus();
-		this.props.addToList(items[activeItem], () => this.searchBar.current.focus());
+		this.props.addToList(items[activeItem]);
 	};
 
 	render() {
@@ -69,7 +66,7 @@ export default class SearchList extends PureComponent {
 						clearActiveItem,
 						order,
 						addActiveItem,
-						ref: this.searchBar
+						ref: this.props.forwardedRef
 					}}
 				/>
 				<List
@@ -86,3 +83,8 @@ export default class SearchList extends PureComponent {
 		);
 	}
 }
+
+export default React.forwardRef((props, ref) => {
+	return <SearchList {...props} forwardedRef={ref} />
+});
+

@@ -19,11 +19,11 @@ export default class DraggableList extends Component {
 		}
 
 		const items = this.reorder(
-			this.props.items,
+			this.props.order,
 			result.source.index,
 			result.destination.index
 		);
-		this.props.setItems(items);
+		this.props.setItemOrder(items);
 	};
 
 	render() {
@@ -35,10 +35,10 @@ export default class DraggableList extends Component {
 						<div
 							ref={provided.innerRef}
 						>
-							{this.props.items.map((item, index) => (
+							{this.props.order.map((id, index) => (
 								<Draggable
-									key={item.id}
-									draggableId={item.id}
+									key={id}
+									draggableId={id}
 									index={index}
 								>
 									{(provided, snapshot) => (
@@ -48,9 +48,7 @@ export default class DraggableList extends Component {
 											{...provided.dragHandleProps}
 											style={provided.draggableProps.style}
 										>
-											<Item isDragging={snapshot.isDragging}>
-												{item.name}
-											</Item>
+											<Item item={this.props.items[id]} isDragging={snapshot.isDragging} {...this.props.componentProps}/>
 										</div>
 									)}
 								</Draggable>
