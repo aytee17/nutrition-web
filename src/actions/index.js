@@ -1,7 +1,7 @@
 import axios from "axios";
 import { cacheAdapterEnhancer } from "axios-extensions";
 import SecureLS from "secure-ls";
-import { EER, proteinRequirement } from "../Utility";
+import { EER, proteinRequirement, dietaryFiberRequirement } from "../Utility";
 
 import * as action from "./actions";
 
@@ -49,7 +49,8 @@ const processUser = user => {
 			...user,
 			age,
 			eer: EER(gender, age, weight, activity_level),
-			proteinRequirement: proteinRequirement(gender, age)
+			proteinRequirement: proteinRequirement(gender, age),
+			dietaryFiberRequirement: dietaryFiberRequirement(gender, age)
 		};
 		return user;
 	}

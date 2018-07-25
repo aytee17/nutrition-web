@@ -20,7 +20,8 @@ export default class AddMeal extends Component {
 			ingredients: {},
 			order: [],
 			totalEnergy: 0,
-			totalProtein: 0
+			totalProtein: 0,
+			totalDietaryFiber: 0
 		};
 		this.searchBar = React.createRef();
 	}
@@ -92,7 +93,8 @@ export default class AddMeal extends Component {
 			() =>
 				this.setState({
 					totalProtein: this.accumulate("protein"),
-					totalEnergy: this.accumulate("energy")
+					totalEnergy: this.accumulate("energy"),
+					totalDietaryFiber: this.accumulate("dietary_fiber")
 				})
 		);
 	};
@@ -115,7 +117,8 @@ export default class AddMeal extends Component {
 			ingredients,
 			order,
 			totalEnergy,
-			totalProtein
+			totalProtein,
+			totalDietaryFiber
 		} = this.state;
 		const { user } = this.props;
 		return (
@@ -143,6 +146,7 @@ export default class AddMeal extends Component {
 								className={style["close"]}
 								onClick={this.close}
 							/>
+							<div className={style["top"]}>
 							<Input
 								name="title"
 								value={title}
@@ -151,7 +155,6 @@ export default class AddMeal extends Component {
 								autoFocus
 								noLabel
 							/>
-							<div className={style["top"]}>
 								<Input
 									name="serves"
 									style={{
@@ -170,22 +173,30 @@ export default class AddMeal extends Component {
 								>
 									<Label>Serves</Label>
 								</Input>
-
-								<Meter
-									title="Energy"
-									units="kJ"
-									total={user.eer}
-									amount={totalEnergy}
-									color="#45b0e6"
-								/>
-								<Meter
-									title="Protein"
-									units="g"
-									total={user.proteinRequirement}
-									amount={totalProtein}
-									color="#D32F2F"
-								/>
 							</div>
+								<div className={style["stats"]}>
+									<Meter
+										title="Energy"
+										units="kJ"
+										total={user.eer}
+										amount={totalEnergy}
+										color="#45b0e6"
+									/>
+									<Meter
+										title="Protein"
+										units="g"
+										total={user.proteinRequirement}
+										amount={totalProtein}
+										color="#D32F2F"
+									/>
+									<Meter
+										title="Dietary Fibre"
+										units="g"
+										total={user.dietaryFiberRequirement}
+										amount={totalDietaryFiber}
+										color="#9CCC65"
+									/>
+								</div>
 							<div className={style["section"]}>
 								<strong>Ingredients</strong>
 								<div className={style["list"]}>

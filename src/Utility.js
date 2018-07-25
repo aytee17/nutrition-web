@@ -88,4 +88,24 @@ export const proteinRequirement = (gender, age) => {
 	return proteinTable[gender][ageRange];
 }
 
+const dietaryFiberTable = {
+	M: [14, 18, 24, 28, 30],
+	F: [14, 18, 20, 22, 25]
+}
+
+export const dietaryFiberRequirement = (gender, age) => {
+	let ageRange;
+	if (age >= 1 && age <=3) {
+		ageRange = 0;
+	} else if (age >= 4 && age <= 8) {
+		ageRange = 1;
+	} else if (age >= 9 && age <= 13) {
+		ageRange = 2;
+	} else if (age >= 14 && age <= 18) {
+		ageRange = 3;
+	} else {
+		ageRange = 4;
+	}
+	return dietaryFiberTable[gender][ageRange];
+}
 
