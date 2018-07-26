@@ -1,9 +1,10 @@
- @import "../../../style/variables";
+@import "../../../style/variables";
 
 .top {
 	display: grid;
-	grid-template-columns: 80% 20%;
-	column-gap: 0.5rem;
+	grid-template-columns: 79% 19%;
+	grid-gap: 2%;
+	align-items: start;
 }
 
 .close {
@@ -23,7 +24,7 @@
 }
 
 .stats {
-	margin: 1rem;	
+	margin: 1rem;
 }
 
 .list {
@@ -32,7 +33,7 @@
 
 .list-item {
 	display: grid;
-	grid-template-columns: 20% 80%;
+	grid-template-columns: 25% 75%;
 	column-gap: 0.5rem;
 	align-items: center;
 	padding: 0.4rem;
@@ -40,10 +41,12 @@
 	background-color: white;
 	border-radius: 3px;
 	transition: $transition-in;
+	align-items: baseline;
 
-	&:hover, &.dragging {
+	&:hover,
+	&.dragging {
 		box-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
-		transition: $transition-out; 
+		transition: $transition-out;
 	}
 
 	&.dragging {
@@ -59,13 +62,14 @@
 
 .input-amount {
 	@include input-border;
-	border:1px solid transparent;
+	border: 1px solid transparent;
 	background-color: transparent;
 	padding: 0.15rem;
+	color: inherit;
 	width: 2.75rem;
 	font-size: 0.9rem;
 	text-align: right;
-	
+
 	&:hover:not(:focus) {
 		border: $input-border;
 	}
