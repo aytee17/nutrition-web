@@ -1,20 +1,8 @@
 import axios from "axios";
-import { cacheAdapterEnhancer } from "axios-extensions";
 import SecureLS from "secure-ls";
 import { EER, proteinRequirement, dietaryFiberRequirement } from "../Utility";
 
-import * as action from "./actions";
-
 import {
-	UPDATE_SEARCH_TERM,
-	GET_INGREDIENTS,
-	HOVER_INGREDIENT,
-	UPDATE_AMOUNT,
-	SET_READY,
-	ADD_INGREDIENT,
-	CLEAR_ACTIVE_INGREDIENT,
-	CLEAR_INGREDIENTS,
-	CLEAR_SEARCH_TERM,
 	LOGIN,
 	LOGOUT,
 	UPDATE_USER,
@@ -22,8 +10,6 @@ import {
 } from "./actions";
 
 const secureStorage = new SecureLS({ encodingType: "aes" });
-
-const source = axios.CancelToken.source();
 
 axios.defaults.withCredentials = true;
 const http = axios.create({
@@ -84,69 +70,3 @@ export const logout = () => {
 		});
 	};
 };
-
-export const updateSearchTerm = term => ({
-	type: UPDATE_SEARCH_TERM,
-	payload: term
-});
-
-export const hoverIngredient = id => ({
-	type: HOVER_INGREDIENT,
-	payload: id
-});
-
-export const getIngredients = searchTerm => {
-	if (searchTerm === "") {
-		return {
-			type: GET_INGREDIENTS,
-			payload: []
-		};
-	}
-
-	return dispatch => {
-		const endpoint = `/ingredients?q=${searchTerm}`;
-		return http
-			.get(endpoint, {
-				cancelToken: source.token
-			})
-			.then(response => {
-				const ingredients = response.data;
-
-				dispatch({
-					type: GET_INGREDIENTS,
-					payload: ingredients
-				});
-				dispatch(hoverIngredient(ingredients[0].id));
-			});
-	};
-};
-
-export const updateAmount = amount => ({
-	type: UPDATE_AMOUNT,
-	payload: amount
-});
-
-export const setReady = status => ({
-	type: SET_READY,
-	payload: status
-});
-
-export const addIngredient = id => ({
-	type: ADD_INGREDIENT,
-	payload: id
-});
-
-export const clearActiveIngredient = () => ({
-	type: CLEAR_ACTIVE_INGREDIENT,
-	payload: null
-});
-
-export const clearIngredients = () => ({
-	type: CLEAR_INGREDIENTS,
-	payload: null
-});
-
-export const clearSearchTerm = () => ({
-	type: CLEAR_SEARCH_TERM,
-	payload: null
-});
