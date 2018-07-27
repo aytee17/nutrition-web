@@ -3,7 +3,7 @@ import style from "./AddMeal.scss";
 import cs from "classnames";
 import { http, keys } from "../../../Utility";
 import { Button, Input } from "../../UI/Inputs";
-import { AddIcon, CloseIcon } from "../../Icons/Icons";
+import { AddIcon, CloseIcon, ClearIcon } from "../../Icons/Icons";
 import { Pane, Horizontal } from "../../Templates/Templates";
 import Meter from "../../Meter/Meter";
 import SearchList from "../../SearchList/SearchList";
@@ -77,6 +77,17 @@ export default class AddMeal extends Component {
         }
     };
 
+    removeIngredient = id => {
+        const ingredients = this.state.ingredients;
+        delete ingredients[id];
+
+        const order = this.state.order;
+        const index = order.indexOf(id);
+        order.splice(index, 1);
+
+        this.setState({ ingredients, order }, this.calculateNutrientTotals);
+    };
+
     focusSearchBar = () => this.searchBar.current.focus();
 
     updateAmount = (id, amount) => {
@@ -88,24 +99,28 @@ export default class AddMeal extends Component {
                     [id]: { ...ingredient, amount }
                 }
             },
-            () =>
-                this.setState({
-                    totalProtein: this.accumulate("protein"),
-                    totalEnergy: this.accumulate("energy"),
-                    totalDietaryFiber: this.accumulate("dietary_fiber")
-                })
+            this.calculateNutrientTotals
         );
     };
 
-    accumulate = attribute =>
-        this.state.order
+    calculateNutrientTotals = () =>
+        this.setState({
+            totalProtein: this.accumulate("protein"),
+            totalEnergy: this.accumulate("energy"),
+            totalDietaryFiber: this.accumulate("dietary_fiber")
+        });
+
+    accumulate = attribute => {
+        if (this.state.order.length === 0) return 0;
+        return this.state.order
             .map(id => {
                 const ingredient = this.state.ingredients[id];
                 const { amount, units } = ingredient;
                 const modifier = units === "amount" ? amount : amount / 100;
                 return ingredient[attribute] * modifier;
             })
-            .reduce((total, current) => total + current);
+            .reduce((total = 0, current) => total + current);
+    };
 
     render() {
         const {
@@ -199,7 +214,9 @@ export default class AddMeal extends Component {
                                         itemComponent={IngredientListItem}
                                         componentProps={{
                                             focusSearchBar: this.focusSearchBar,
-                                            updateAmount: this.updateAmount
+                                            updateAmount: this.updateAmount,
+                                            removeIngredient: this
+                                                .removeIngredient
                                         }}
                                     />
                                 </div>
@@ -223,7 +240,8 @@ const IngredientListItem = ({
     isDragging,
     item: ingredient,
     focusSearchBar,
-    updateAmount
+    updateAmount,
+    removeIngredient
 }) => {
     const classNames = cs(style["list-item"], {
         [style["dragging"]]: isDragging
@@ -253,7 +271,11 @@ const IngredientListItem = ({
                 />
                 <div>{units}</div>
             </div>
-            {ingredient.name}
+            <span>{ingredient.name}</span>
+                <ClearIcon
+                    className={style["remove-ingredient"]}
+                    onClick={event => removeIngredient(ingredient.id)}
+                />
         </div>
     );
 };

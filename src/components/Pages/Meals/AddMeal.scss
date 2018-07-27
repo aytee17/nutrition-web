@@ -33,20 +33,24 @@
 
 .list-item {
 	display: grid;
-	grid-template-columns: 25% 75%;
-	column-gap: 0.5rem;
+	grid-template-columns: 23% 58% 13%;
+	column-gap: 3%;
+	padding: 0.4rem 0;
 	align-items: center;
-	padding: 0.4rem;
 	margin-bottom: 0.125rem;
 	background-color: white;
 	border-radius: 3px;
 	transition: $transition-in;
-	align-items: baseline;
 
 	&:hover,
 	&.dragging {
 		box-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
 		transition: $transition-out;
+	}
+
+	&:hover > .remove-ingredient {
+		transition: $transition-in;
+		opacity: 1;
 	}
 
 	&.dragging {
@@ -72,5 +76,16 @@
 
 	&:hover:not(:focus) {
 		border: $input-border;
+	}
+}
+
+.remove-ingredient {
+	cursor: pointer;
+	margin: auto;
+	fill: #737373;
+	opacity: 0;
+
+	&:hover {
+		fill: black;
 	}
 }
