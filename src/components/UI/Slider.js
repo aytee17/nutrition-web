@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import style from "./Slider.scss";
 import cs from "classnames";
-import { Horizontal } from "../Templates/Templates";
 import { range } from "../../Utility";
 
 export class Slider extends Component {

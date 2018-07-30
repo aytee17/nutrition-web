@@ -6,7 +6,7 @@
 
 .input-list {
 	display: grid;
-	grid-template-row: auto;
+	grid-template-rows: auto;
 	grid-row-gap: 0.625rem;
 	padding-top: 0.625rem;
 }
@@ -168,11 +168,18 @@
 	}
 
 	&.pressed {
-		@include greyed-out("1.5");
 		transform: translateY(3px);
+
+		&.greyed {
+			@include greyed-out("1.5");
+		}
 	}
 
 	&.waiting {
+		@include greyed-out("3.5");
+	}
+
+	&.greyed {
 		@include greyed-out("3.5");
 	}
 }

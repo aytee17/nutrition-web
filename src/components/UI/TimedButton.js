@@ -1,7 +1,6 @@
 import React from "react";
 import style from "./Inputs.scss";
 import cs from "classnames";
-import axios from "axios";
 import { LoadingSpinner } from "../Templates/Templates";
 
 class TimedButton extends React.Component {

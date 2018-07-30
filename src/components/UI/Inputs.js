@@ -1,9 +1,9 @@
-import React, { Component, Children } from "react";
+import React, { Children } from "react";
 import style from "./Inputs.scss";
 import cs from "classnames";
 import zxcvbn from "zxcvbn";
-import { Horizontal, Menu } from "../Templates/Templates";
-import { VisibilityIcon, DownIcon } from "../Icons/Icons";
+import { Horizontal } from "../Templates/Templates";
+import { VisibilityIcon } from "../Icons/Icons";
 import { range } from "../../Utility";
 
 export const InputList = ({ children, ...props }) => (
@@ -67,9 +67,10 @@ export const SmallLabel = ({ children, errorMessage, ...props }) => (
 	</label>
 );
 
-export const Button = ({ children, pressed, ...props }) => {
+export const Button = ({ children, pressed, greyed, ...props }) => {
 	const className = cs(style["button"], {
-		[style["pressed"]]: pressed
+		[style["pressed"]]: pressed,
+		[style["greyed"]]: greyed
 	});
 
 	return (
