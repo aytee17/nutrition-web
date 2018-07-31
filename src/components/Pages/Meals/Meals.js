@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import AppTemplate from "../../Templates/AppTemplate";
+import AppLayout from "../../Templates/AppLayout";
 import MealInfo from "./MealInfo";
 import { Pane } from "../../Templates/Templates";
 import AddMeal from "./AddMeal";
@@ -39,7 +39,7 @@ class Meals extends Component {
 
 	render() {
 		return (
-			<AppTemplate>
+			<AppLayout>
 				<div
 					style={{
 						display: "grid",
@@ -67,7 +67,7 @@ class Meals extends Component {
 						{this.renderMeals()}
 					</div>
 				</div>
-			</AppTemplate>
+			</AppLayout>
 		);
 	}
 }

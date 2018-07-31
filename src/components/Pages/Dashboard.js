@@ -1,6 +1,6 @@
 import React from "react";
 
-import AppTemplate from "../Templates/AppTemplate";
+import AppLayout from "../Templates/AppLayout";
 import { Pane } from "../Templates/Templates";
 import DetailsForm from "../Forms/DetailsForm";
 import { range } from "../../Utility";
@@ -12,7 +12,7 @@ import { updateUser } from "../../actions/index";
 function Dashboard ({ user, updateUser }) {
 	if (user.weight === null || user.activity_level === null) {
 		return (
-			<AppTemplate noBar >
+			<AppLayout noBar >
 				<Pane
 					center
 					style={{ marginTop: "3.5rem", padding: "2rem", width: "37%" }}
@@ -26,12 +26,12 @@ function Dashboard ({ user, updateUser }) {
 
 					<DetailsForm user={user} updateUser={updateUser} />
 				</Pane>
-			</AppTemplate>
+			</AppLayout>
 		);
 	} else {
 		return (
-			<AppTemplate>
-			</AppTemplate>
+			<AppLayout>
+			</AppLayout>
 		);
 	}
 };

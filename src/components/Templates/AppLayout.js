@@ -1,11 +1,11 @@
 import React from "react";
-import style from "./AppTemplate.scss";
+import style from "./AppLayout.scss";
 import cs from "classnames";
 import Header from "./Header";
 import { SideBar, SideBarItem } from "./Templates";
 import { FoodIcon, PlanIcon, DashboardIcon, IngredientIcon } from "../Icons/Icons";
 
-export default function AppTemplate ({ noBar, children }) {
+export default function AppLayout ({ noBar, children }) {
 	const classNames = cs({
 		[style["template"]]: !noBar,
 		[style["template-no-bar"]]: noBar
