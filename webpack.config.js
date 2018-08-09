@@ -1,16 +1,26 @@
 const path = require("path");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const PostCssPresetEnv = require("postcss-preset-env");
 
 module.exports = {
-    mode: "development",
     entry: ["./src/index.js"],
     output: {
-        filename: "app.js",
+        filename: "app.bundle.[chunkhash].js",
         path: path.resolve(__dirname, "dist")
     },
     plugins: [
+        new CleanWebpackPlugin(["dist"]),
+        new HtmlWebpackPlugin({
+            minify: true,
+            title: "nutritiontrackr",
+            meta: {
+                viewport: "width=device-width,initial-scale=1"
+            }
+        }),
         new MiniCssExtractPlugin({
-            filename: "styles.css"
+            filename: "styles.bundle.[contenthash].css"
         })
     ],
     module: {
@@ -21,7 +31,7 @@ module.exports = {
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: ["react", "flow"],
+                        presets: ["react"],
                         plugins: [
                             "transform-class-properties",
                             "transform-object-rest-spread",
@@ -33,15 +43,14 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [
-                    { 
-                        loader: "css-hot-loader" 
+                    {
+                        loader: "css-hot-loader"
                     },
                     MiniCssExtractPlugin.loader,
                     {
                         loader: "css-loader",
                         options: {
-                            modules: true,
-                            localIdentName: "[name]__[local]__[hash:base64:5]"
+                            modules: true
                         }
                     },
                     {
@@ -49,26 +58,14 @@ module.exports = {
                         ident: "post-css",
                         options: {
                             ident: "postcss",
-                            plugins: [require("postcss-cssnext")()]
+                            plugins: [PostCssPresetEnv()]
                         }
                     },
                     {
                         loader: "sass-loader"
                     }
                 ]
-            },
-            {
-                test: /\.svg$/,
-                use: [
-                    {
-                        loader: "svg-url-loader"
-                    }
-                ]
             }
         ]
-    },
-    devServer: {
-        historyApiFallback: true,
-        contentBase: "./dist"
     }
 };
