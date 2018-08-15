@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import style from "./Slider.scss";
 import cs from "classnames";
-import { range } from "../../Utility";
+import range from "../../utils/range";
 
 export class Slider extends Component {
 	constructor(props) {

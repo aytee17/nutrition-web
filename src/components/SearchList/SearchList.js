@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import _ from "lodash";
+import mapKeys from "lodash.mapkeys";
 import SearchBar from "./SearchBar";
 import List from "./List";
 
@@ -16,7 +16,7 @@ class SearchList extends PureComponent {
         const itemHandler = items => {
             if (items.length > 0) {
                 this.setState({
-                    items: _.mapKeys(items, "id"),
+                    items: mapKeys(items, "id"),
                     order: items.map(item => item.id),
                     activeItem: items[0].id
                 });

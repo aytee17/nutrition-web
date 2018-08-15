@@ -5,9 +5,10 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const PostCssPresetEnv = require("postcss-preset-env");
 
 module.exports = {
-    entry: ["./src/index.js"],
+    entry: {
+        app: "./src/index.js"
+    },
     output: {
-        filename: "app.bundle.[chunkhash].js",
         path: path.resolve(__dirname, "dist")
     },
     plugins: [
@@ -20,7 +21,7 @@ module.exports = {
             }
         }),
         new MiniCssExtractPlugin({
-            filename: "styles.bundle.[contenthash].css"
+            filename: "[name].style.[contenthash].css"
         })
     ],
     module: {
@@ -33,6 +34,7 @@ module.exports = {
                     options: {
                         presets: ["react"],
                         plugins: [
+                            "syntax-dynamic-import",
                             "transform-class-properties",
                             "transform-object-rest-spread",
                             "react-hot-loader/babel"
@@ -50,7 +52,8 @@ module.exports = {
                     {
                         loader: "css-loader",
                         options: {
-                            modules: true
+                            modules: true,
+                            importLoaders: 2
                         }
                     },
                     {

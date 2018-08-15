@@ -1,6 +1,10 @@
 import axios from "axios";
 import SecureLS from "secure-ls";
-import { EER, proteinRequirement, dietaryFiberRequirement } from "../Utility";
+import {
+    EER,
+    proteinRequirement,
+    dietaryFiberRequirement
+} from "../utils/nutrition";
 
 import { LOGIN, LOGOUT, UPDATE_USER, GET_MEALS } from "./actions";
 

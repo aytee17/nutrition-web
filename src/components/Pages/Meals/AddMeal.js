@@ -1,13 +1,20 @@
 import React, { Component } from "react";
 import style from "./AddMeal.scss";
 import cs from "classnames";
-import { http, keys } from "../../../Utility";
+import http from "../../../utils/http";
+import keys from "../../../utils/keys";
 import { Button, Input } from "../../UI/Inputs";
-import { AddIcon, CloseIcon, ClearIcon } from "../../Icons/Icons";
+import { AddIcon, CloseIcon, ClearIcon, TickIcon } from "../../Icons/Icons";
 import { Pane, Horizontal } from "../../Templates/Templates";
 import Meter from "../../Meter/Meter";
 import SearchList from "../../SearchList/SearchList";
-import DraggableList from "../../DraggableList/DraggableList";
+//import DraggableList from "../../DraggableList/DraggableList";
+import Loadable from "react-loadable";
+
+const DraggableList = Loadable({
+    loader: () => import("../../DraggableList/DraggableList"),
+    loading: () => <div />
+});
 
 export default class AddMeal extends Component {
     constructor(props) {
@@ -119,7 +126,28 @@ export default class AddMeal extends Component {
                 const modifier = units === "amount" ? amount : amount / 100;
                 return ingredient[attribute] * modifier;
             })
-            .reduce((total = 0, current) => total + current);
+            .reduce((total, current) => total + current);
+    };
+
+    checkReadySubmit = () => {
+        const titleReady = this.state.title.length > 0;
+        const servesReady = this.state.serves >= 1;
+        const hasIngredients = this.state.order.length > 0;
+
+        let ingredientsHaveAmounts = hasIngredients ? true : false;
+        for (let id of this.state.order) {
+            const ingredient = this.state.ingredients[id];
+            if (isNaN(ingredient.amount) || ingredient.amount <= 0) {
+                ingredientsHaveAmounts = false;
+                break;
+            }
+        }
+        return (
+            titleReady &&
+            servesReady &&
+            hasIngredients &&
+            ingredientsHaveAmounts
+        );
     };
 
     render() {
@@ -134,12 +162,15 @@ export default class AddMeal extends Component {
             totalDietaryFiber
         } = this.state;
         const { user } = this.props;
+        const readySubmit = this.checkReadySubmit();
+        console.log({ readySubmit });
         return (
             <Horizontal style={{ justifyContent: "flex-start" }}>
                 <div>
                     <Button
                         pressed={active}
                         disabled={active}
+                        greyed={active}
                         onClick={this.open}
                     >
                         <AddIcon />
@@ -160,6 +191,14 @@ export default class AddMeal extends Component {
                                 className={style["close"]}
                                 onClick={this.close}
                             />
+                            <div className={style["submit"]}>
+                                <Button
+                                    disabled={!readySubmit}
+                                    greyed={!readySubmit}
+                                >
+                                    <TickIcon />
+                                </Button>
+                            </div>
 
                             <Input
                                 style={{ textAlign: "center" }}
@@ -272,10 +311,10 @@ const IngredientListItem = ({
                 <div>{units}</div>
             </div>
             <span>{ingredient.name}</span>
-                <ClearIcon
-                    className={style["remove-ingredient"]}
-                    onClick={event => removeIngredient(ingredient.id)}
-                />
+            <ClearIcon
+                className={style["remove-ingredient"]}
+                onClick={event => removeIngredient(ingredient.id)}
+            />
         </div>
     );
 };
