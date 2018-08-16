@@ -4,6 +4,7 @@ const common = require("./webpack.config.js");
 const HtmlWebpackExternalsPlugin = require("html-webpack-externals-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
     .BundleAnalyzerPlugin;
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = merge.smart(common, {
     mode: "production",
