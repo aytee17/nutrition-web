@@ -23,6 +23,7 @@ module.exports = merge.smart(common, {
         }
     },
     plugins: [
+        new CleanWebpackPlugin(["dist"]),
         new HtmlWebpackExternalsPlugin({
             externals: [
                 {
