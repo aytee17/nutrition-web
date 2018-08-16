@@ -36,7 +36,10 @@ module.exports = merge.smart(common, {
             ]
         }),
         new webpack.HashedModuleIdsPlugin(),
-        new BundleAnalyzerPlugin()
+        new BundleAnalyzerPlugin(),
+        new webpack.DefinePlugin({
+            API_ENDPOINT: JSON.stringify("https://api.nutritiontrackr.app")
+        })
     ],
     module: {
         rules: [

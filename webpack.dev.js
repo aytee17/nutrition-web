@@ -1,6 +1,6 @@
 const merge = require("webpack-merge");
 const common = require("./webpack.config.js");
-const DashboardPlugin = require("webpack-dashboard/plugin");
+const webpack = require("webpack");
 
 module.exports = merge.smart(common, {
     mode: "development",
@@ -8,7 +8,11 @@ module.exports = merge.smart(common, {
         filename: "[name].[hash].js"
     },
     devtool: "inline-source-map",
-    plugins: [new DashboardPlugin()],
+    plugins: [
+        new webpack.DefinePlugin({
+            API_ENDPOINT: JSON.stringify("http://localhost:3000")
+        })
+    ],
     module: {
         rules: [
             {

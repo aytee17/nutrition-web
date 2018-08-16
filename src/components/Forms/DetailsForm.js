@@ -1,6 +1,6 @@
 import React from "react";
 import Yup from "yup";
-import axios from "axios";
+import api from "../../utils/api";
 import { withFormik } from "formik";
 import Slider from "../UI/Slider";
 import {
@@ -152,8 +152,7 @@ const DetailsForm = withFormik({
     }),
     handleSubmit: (values, { props, setSubmitting, setErrors, setStatus }) => {
         values.activity_level = values.activity_level.toString();
-        axios
-            .put("http://localhost:3000/userDetails", values)
+        api.put("/userDetails", values)
             .then(response => {
                 props.updateUser({ ...props.user, ...response.data });
             })

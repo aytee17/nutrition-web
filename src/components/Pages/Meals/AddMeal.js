@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import style from "./AddMeal.scss";
 import cs from "classnames";
-import http from "../../../utils/http";
+import api from "../../../utils/api";
 import keys from "../../../utils/keys";
 import { Button, Input } from "../../UI/Inputs";
 import { AddIcon, CloseIcon, ClearIcon, TickIcon } from "../../Icons/Icons";
 import { Pane, Horizontal } from "../../Templates/Templates";
 import Meter from "../../Meter/Meter";
 import SearchList from "../../SearchList/SearchList";
-//import DraggableList from "../../DraggableList/DraggableList";
 import Loadable from "react-loadable";
 
 const DraggableList = Loadable({
@@ -58,7 +57,7 @@ export default class AddMeal extends Component {
 
     createIngredientFetcher = responseHandler => searchTerm => {
         const endpoint = `/ingredients?q=${searchTerm}`;
-        http.get(endpoint).then(response => responseHandler(response.data));
+        api.get(endpoint).then(response => responseHandler(response.data));
     };
 
     addIngredient = ingredient => {

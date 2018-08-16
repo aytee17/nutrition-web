@@ -209,8 +209,7 @@ const SignUpForm = withFormik({
             email: values.email.trim(),
             recaptcha
         };
-        axios
-            .post("http://localhost:3000/signup", transformedValues)
+        http.post("/signup", transformedValues)
             .then(response => {
                 setSubmitting(false);
                 const { id, hashid, email } = response.data;

@@ -1,24 +1,19 @@
-import axios from "axios";
 import SecureLS from "secure-ls";
 import {
     EER,
     proteinRequirement,
     dietaryFiberRequirement
 } from "../utils/nutrition";
+import api from "../utils/api";
 
 import { LOGIN, LOGOUT, UPDATE_USER, GET_MEALS } from "./actions";
 
 const secureStorage = new SecureLS({ encodingType: "aes" });
 
-axios.defaults.withCredentials = true;
-const http = axios.create({
-    baseURL: "http://localhost:3000/"
-});
-
 export const getMeals = () => {
     const endpoint = "/meals";
     return dispatch =>
-        http.get(endpoint).then(response => {
+        api.get(endpoint).then(response => {
             dispatch({
                 type: GET_MEALS,
                 payload: { ...response.data, loaded: true }
@@ -63,7 +58,7 @@ export const login = user => {
 export const logout = () => {
     const endpoint = "/logout";
     return dispatch => {
-        return http.get(endpoint).then(response => {
+        return api.get(endpoint).then(response => {
             dispatch({ type: LOGOUT, payload: null });
             secureStorage.remove("state");
         });

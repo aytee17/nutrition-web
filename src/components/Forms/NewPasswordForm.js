@@ -5,7 +5,7 @@ import { LoadingSpinner } from "../Templates/Templates";
 import zxcvbn from "zxcvbn";
 import { withFormik } from "formik";
 import Yup from "yup";
-import axios from "axios";
+import api from "../../utils/api";
 
 const InnerForm = ({
     values,
@@ -15,7 +15,6 @@ const InnerForm = ({
     handleChange,
     handleBlur,
     isSubmitting,
-    setFieldValue,
     setStatus,
     status = { visiblePassword: false }
 }) => (
@@ -67,13 +66,12 @@ const NewPasswordForm = withFormik({
     }),
     handleSubmit: (values, { props, setSubmitting, setErrors, setStatus }) => {
         const { id, hashID, hash } = props;
-        axios
-            .post("http://localhost:3000/newpassword", {
-                id,
-                hashID,
-                hash,
-                newPassword: values.password
-            })
+        api.post("/newpassword", {
+            id,
+            hashID,
+            hash,
+            newPassword: values.password
+        })
             .then(response => {
                 props.setSubmitted();
                 setSubmitting(false);
