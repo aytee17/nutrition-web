@@ -54,7 +54,6 @@ function createMessageDispatcher(dispatch) {
         dispatch(message.data);
     };
 }
-
 channel.onmessage = createMessageDispatcher(store.dispatch);
 
 const root = document.createElement("div");
@@ -66,5 +65,5 @@ ReactDOM.render(
     <Provider store={store}>
         <App />
     </Provider>,
-    document.querySelector("#root")
+    root
 );
