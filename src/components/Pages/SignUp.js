@@ -3,6 +3,7 @@ import DocumentTitle from "react-document-title";
 import { Link, Redirect } from "react-router-dom";
 import { WelcomeHeading, Logo, Pane, Direction } from "../Templates/Templates";
 import SignUpForm from "../Forms/SignUpForm";
+import Recaptcha from "../HOC/Recaptcha";
 
 export default class SignUp extends Component {
     constructor(props) {
@@ -49,7 +50,14 @@ export default class SignUp extends Component {
                             }}
                             center
                         >
-                            <SignUpForm setSubmitted={this.setSubmitted} />
+                            <Recaptcha>
+                                {getRecaptchaToken => (
+                                    <SignUpForm
+                                        getRecaptchaToken={getRecaptchaToken}
+                                        setSubmitted={this.setSubmitted}
+                                    />
+                                )}
+                            </Recaptcha>
                         </Pane>
 
                         <Direction>

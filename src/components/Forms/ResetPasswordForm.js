@@ -4,7 +4,6 @@ import api from "../../utils/api";
 import { withFormik } from "formik";
 import { Button, Input, Label, ButtonTitle } from "../UI/Inputs";
 import { MailIcon } from "../Icons/Icons";
-import withRecaptcha from "../HOC/Recaptcha";
 
 const InnerForm = ({
     values,
@@ -13,9 +12,7 @@ const InnerForm = ({
     handleSubmit,
     handleChange,
     handleBlur,
-    isSubmitting,
-    setFieldValue,
-    setStatus
+    isSubmitting
 }) => (
     <form onSubmit={handleSubmit}>
         <Input
@@ -74,4 +71,4 @@ const ResetPasswordForm = withFormik({
     }
 })(InnerForm);
 
-export default withRecaptcha(ResetPasswordForm);
+export default ResetPasswordForm;

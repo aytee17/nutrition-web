@@ -15,9 +15,7 @@ import { Horizontal, Error, LoadingSpinner } from "../Templates/Templates";
 import emailSchema from "../../utils/Schemas/EmailSchema";
 import dateSchema from "../../utils/Schemas/DateSchema";
 import passwordSchema from "../../utils/Schemas/PasswordSchema";
-import axios from "axios";
 import { Link } from "react-router-dom";
-import withRecaptcha from "../HOC/Recaptcha";
 
 const InnerForm = ({
     values,
@@ -233,4 +231,4 @@ const transformErrors = errors => {
     };
 };
 
-export default withRecaptcha(SignUpForm);
+export default SignUpForm;
