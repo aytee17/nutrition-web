@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 
 import DocumentTitle from "react-document-title";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect, Link } from "@reach/router";
+
 import { WelcomeHeading, Logo, Pane, Direction } from "../Templates/Templates";
 import LoginForm from "../Forms/LoginForm";
 
@@ -45,7 +46,7 @@ class Login extends Component {
         } else {
             return (
                 <DocumentTitle title="Login">
-                    <div style={{ marginTop: "9.375rem" }}>
+                    <div style={{ paddingTop: "9.375rem" }}>
                         <WelcomeHeading>
                             Login to <Logo />
                         </WelcomeHeading>

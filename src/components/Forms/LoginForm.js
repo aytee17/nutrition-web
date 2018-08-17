@@ -4,7 +4,7 @@ import api from "../../utils/api";
 import { withFormik } from "formik";
 import { Input, InputList, Label, Button, ButtonTitle } from "../UI/Inputs";
 import { MailIcon, LockIcon, VisibilityIcon } from "../Icons/Icons";
-import { Link } from "react-router-dom";
+import { Link } from "@reach/router";
 import { Error } from "../Templates/Templates";
 
 const InnerForm = ({

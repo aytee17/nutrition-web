@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import DocumentTitle from "react-document-title";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect } from "@reach/router";
 import { WelcomeHeading, Logo, Pane, Direction } from "../Templates/Templates";
 import SignUpForm from "../Forms/SignUpForm";
 import Recaptcha from "../HOC/Recaptcha";
@@ -39,7 +39,7 @@ export default class SignUp extends Component {
         } else {
             return (
                 <DocumentTitle title="Sign Up">
-                    <div style={{ marginTop: "70px" }}>
+                    <div style={{ paddingTop: "70px" }}>
                         <WelcomeHeading>
                             Join <Logo />
                         </WelcomeHeading>

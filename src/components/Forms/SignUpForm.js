@@ -15,7 +15,7 @@ import { Horizontal, Error, LoadingSpinner } from "../Templates/Templates";
 import emailSchema from "../../utils/Schemas/EmailSchema";
 import dateSchema from "../../utils/Schemas/DateSchema";
 import passwordSchema from "../../utils/Schemas/PasswordSchema";
-import { Link } from "react-router-dom";
+import { Link } from "@reach/router";
 
 const InnerForm = ({
     values,

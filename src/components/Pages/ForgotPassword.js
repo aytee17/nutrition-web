@@ -1,7 +1,7 @@
 import React from "react";
 import ResetPasswordForm from "../Forms/ResetPasswordForm";
 import { Pane, Logo, WelcomeHeading, Direction } from "../Templates/Templates";
-import { Link } from "react-router-dom";
+import { Link } from "@reach/router";
 import Recaptcha from "../HOC/Recaptcha";
 
 export default class ForgotPassword extends React.Component {
@@ -22,7 +22,7 @@ export default class ForgotPassword extends React.Component {
         const after =
             "An email has been sent with instructions on how to reset your password.";
         return (
-            <div style={{ marginTop: "9.375rem" }}>
+            <div style={{ paddingTop: "9.375rem" }}>
                 <WelcomeHeading>
                     <Logo />
                 </WelcomeHeading>
