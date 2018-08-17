@@ -3,10 +3,10 @@ import {
     EER,
     proteinRequirement,
     dietaryFiberRequirement
-} from "../utils/nutrition";
-import api from "../utils/api";
+} from "../../utils/nutrition";
+import api from "../../utils/api";
 
-import { LOGIN, LOGOUT, UPDATE_USER, GET_MEALS } from "./actions";
+import { LOGIN, LOGOUT, UPDATE_USER, GET_MEALS } from "./Actions";
 
 const secureStorage = new SecureLS({ encodingType: "aes" });
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import style from "./MealInfo.scss";
 import Meter from "../../Meter/Meter";
-import { Input, SmallLabel } from "../../UI/Inputs";
+import { Input, SmallLabel } from "../../Controls/Inputs";
 import { Horizontal } from "../../Templates/Templates";
 
 export default class MealInfo extends Component {

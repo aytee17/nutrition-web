@@ -3,7 +3,7 @@ import style from "./AddMeal.scss";
 import cs from "classnames";
 import api from "../../../utils/api";
 import keys from "../../../utils/keys";
-import { Button, Input } from "../../UI/Inputs";
+import { Button, Input } from "../../Controls/Inputs";
 import { AddIcon, CloseIcon, ClearIcon, TickIcon } from "../../Icons/Icons";
 import { Pane, Horizontal } from "../../Templates/Templates";
 import Meter from "../../Meter/Meter";

@@ -2,7 +2,7 @@ import React from "react";
 import Yup from "yup";
 import api from "../../utils/api";
 import { withFormik } from "formik";
-import { Input, InputList, Label, Button, ButtonTitle } from "../UI/Inputs";
+import { Input, InputList, Label, Button, ButtonTitle } from "../Controls/Inputs";
 import { MailIcon, LockIcon, VisibilityIcon } from "../Icons/Icons";
 import { Link } from "@reach/router";
 import { Error } from "../Templates/Templates";

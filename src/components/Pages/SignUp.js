@@ -3,7 +3,7 @@ import DocumentTitle from "react-document-title";
 import { Link, Redirect } from "@reach/router";
 import { WelcomeHeading, Logo, Pane, Direction } from "../Templates/Templates";
 import SignUpForm from "../Forms/SignUpForm";
-import Recaptcha from "../HOC/Recaptcha";
+import Recaptcha from "../Recaptcha";
 
 export default class SignUp extends Component {
     constructor(props) {

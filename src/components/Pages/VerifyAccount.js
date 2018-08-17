@@ -4,7 +4,7 @@ import { Redirect } from "@reach/router";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { login, logout } from "../../actions/index";
+import { login, logout } from "../../redux/actions/ActionCreators";
 
 class VerifyAccount extends Component {
     constructor(props) {

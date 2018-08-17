@@ -2,7 +2,7 @@ import React from "react";
 import Yup from "yup";
 import api from "../../utils/api";
 import { withFormik } from "formik";
-import { Button, Input, Label, ButtonTitle } from "../UI/Inputs";
+import { Button, Input, Label, ButtonTitle } from "../Controls/Inputs";
 import { MailIcon } from "../Icons/Icons";
 
 const InnerForm = ({

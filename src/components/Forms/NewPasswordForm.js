@@ -1,6 +1,6 @@
 import React from "react";
-import { Button, ButtonTitle } from "../UI/Inputs";
-import NewPasswordInput from "../UI/NewPasswordInput";
+import { Button, ButtonTitle } from "../Controls/Inputs";
+import NewPasswordInput from "../Controls/NewPasswordInput";
 import { LoadingSpinner } from "../Templates/Templates";
 import zxcvbn from "zxcvbn";
 import { withFormik } from "formik";

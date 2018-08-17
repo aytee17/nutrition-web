@@ -8,7 +8,7 @@ import LoginForm from "../Forms/LoginForm";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { login } from "../../actions/index";
+import { login } from "../../redux/actions/ActionCreators";
 
 class Login extends Component {
     constructor(props) {

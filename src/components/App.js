@@ -1,7 +1,6 @@
 import React from "react";
 import { Router } from "@reach/router";
-import Private from "./HOC/Private";
-import style from "../style/main.scss";
+import Private from "./Private";
 import SignUpSuccess from "./Pages/SignUpSuccess";
 import VerifyAccount from "./Pages/VerifyAccount";
 import Login from "./Pages/Login";

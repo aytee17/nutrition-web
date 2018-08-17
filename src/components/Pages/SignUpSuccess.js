@@ -3,7 +3,7 @@ import api from "../../utils/api";
 import DocumentTitle from "react-document-title";
 import { Pane } from "../Templates/Templates";
 import { TickIcon } from "../Icons/Icons";
-import TimedButton from "../UI/TimedButton";
+import TimedButton from "../Controls/TimedButton";
 import { Redirect } from "@reach/router";
 
 export default class SignUpSuccess extends Component {

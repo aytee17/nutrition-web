@@ -2,14 +2,14 @@ import React from "react";
 import Yup from "yup";
 import api from "../../utils/api";
 import { withFormik } from "formik";
-import Slider from "../UI/Slider";
+import Slider from "../Controls/Slider";
 import {
     Button,
     Input,
     SmallLabel,
     ButtonTitle,
     FixedDisplay
-} from "../UI/Inputs";
+} from "../Controls/Inputs";
 import { EER } from "../../utils/nutrition";
 import { Horizontal } from "../Templates/Templates";
 import style from "./DetailsForm.scss";

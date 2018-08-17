@@ -2,7 +2,7 @@ import React from "react";
 import ResetPasswordForm from "../Forms/ResetPasswordForm";
 import { Pane, Logo, WelcomeHeading, Direction } from "../Templates/Templates";
 import { Link } from "@reach/router";
-import Recaptcha from "../HOC/Recaptcha";
+import Recaptcha from "../Recaptcha";
 
 export default class ForgotPassword extends React.Component {
     constructor(props) {

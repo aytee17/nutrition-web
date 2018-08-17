@@ -8,9 +8,9 @@ import {
     Radio,
     Button,
     ButtonTitle
-} from "../UI/Inputs";
-import NewPasswordInput from "../UI/NewPasswordInput";
-import DatePicker from "../UI/DatePicker";
+} from "../Controls/Inputs";
+import NewPasswordInput from "../Controls/NewPasswordInput";
+import DatePicker from "../Controls/DatePicker";
 import { Horizontal, Error, LoadingSpinner } from "../Templates/Templates";
 import emailSchema from "../../utils/Schemas/EmailSchema";
 import dateSchema from "../../utils/Schemas/DateSchema";

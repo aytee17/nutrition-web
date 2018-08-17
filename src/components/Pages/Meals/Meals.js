@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import MealInfo from "./MealInfo";
 import { Pane } from "../../Templates/Templates";
 import AddMeal from "./AddMeal";
-
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { getMeals } from "../../../actions/index";
+import { getMeals } from "../../../redux/actions/ActionCreators";
 
 class Meals extends Component {
     constructor(props) {

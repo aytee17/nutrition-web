@@ -4,7 +4,7 @@ import DetailsForm from "../Forms/DetailsForm";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { updateUser } from "../../actions/index";
+import { updateUser } from "../../redux/actions/ActionCreators";
 
 function Dashboard({ user, updateUser }) {
     if (user.weight === null || user.activity_level === null) {
