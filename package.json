@@ -15,6 +15,9 @@
     "author": "",
     "license": "UNLICENSED",
     "jest": {
+        "globals": {
+            "API_ENDPOINT": "http://localhost:3000"
+        },
         "moduleNameMapper": {
             "\\.scss$": "identity-obj-proxy"
         }
@@ -26,6 +29,7 @@
         "babel-plugin-syntax-dynamic-import": "^6.18.0",
         "babel-plugin-transform-class-properties": "^6.24.1",
         "babel-plugin-transform-object-rest-spread": "^6.26.0",
+        "babel-preset-env": "^1.7.0",
         "babel-preset-react": "^6.24.1",
         "clean-webpack-plugin": "^0.1.19",
         "css-hot-loader": "^1.4.0",
