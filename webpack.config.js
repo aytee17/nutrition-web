@@ -28,16 +28,7 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: "babel-loader",
-                    options: {
-                        presets: ["react"],
-                        plugins: [
-                            "syntax-dynamic-import",
-                            "transform-class-properties",
-                            "transform-object-rest-spread",
-                            "react-hot-loader/babel"
-                        ]
-                    }
+                    loader: "babel-loader"
                 }
             },
             {
