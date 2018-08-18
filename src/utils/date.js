@@ -10,7 +10,7 @@ export const isLeapYear = year => {
 export const getMonth = number => {
     return [
         "January",
-        "Febuary",
+        "February",
         "March",
         "April",
         "May",
