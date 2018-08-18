@@ -55,7 +55,7 @@ class SearchList extends PureComponent {
             addActiveItem
         } = this;
         return (
-            <div>
+            <React.Fragment>
                 <SearchBar
                     {...{
                         searchTerm,
@@ -79,7 +79,7 @@ class SearchList extends PureComponent {
                         order
                     }}
                 />
-            </div>
+            </React.Fragment>
         );
     }
 }
