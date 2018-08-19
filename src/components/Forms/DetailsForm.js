@@ -1,5 +1,5 @@
 import React from "react";
-import Yup from "yup";
+import { object, number } from "yup";
 import api from "../../utils/api";
 import { withFormik } from "formik";
 import Slider from "../Controls/Slider";
@@ -109,13 +109,13 @@ const InnerForm = ({
                 <div>
                     {values.weight !== ""
                         ? `${Number(
-                              EER(
-                                  user.gender,
-                                  age,
-                                  values.weight,
-                                  values.activity_level
-                              )
-                          ).toLocaleString()} kJ/day`
+                            EER(
+                                user.gender,
+                                age,
+                                values.weight,
+                                values.activity_level
+                            )
+                        ).toLocaleString()} kJ/day`
                         : ""}
                 </div>
             </div>
@@ -146,9 +146,9 @@ const DetailsForm = withFormik({
         activity_level: user.activity_level || 3,
         weight: user.weight || ""
     }),
-    validationSchema: Yup.object().shape({
-        activity_level: Yup.number().required("is required"),
-        weight: Yup.number().required("is required")
+    validationSchema: object().shape({
+        activity_level: number().required("is required"),
+        weight: number().required("is required")
     }),
     handleSubmit: (values, { props, setSubmitting, setErrors, setStatus }) => {
         values.activity_level = values.activity_level.toString();

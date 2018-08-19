@@ -1,5 +1,5 @@
 import React from "react";
-import Yup from "yup";
+import { object, string, mixed } from "yup";
 import { withFormik } from "formik";
 import {
     Input,
@@ -186,12 +186,12 @@ const SignUpForm = withFormik({
         gender: "",
         recaptcha: ""
     }),
-    validationSchema: Yup.object().shape({
-        name: Yup.string().required("is required"),
+    validationSchema: object().shape({
+        name: string().required("is required"),
         email: emailSchema,
         password: passwordSchema,
         date: dateSchema,
-        gender: Yup.mixed()
+        gender: mixed()
             .required("Select your gender")
             .oneOf(["M", "F"])
     }),

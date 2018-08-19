@@ -1,8 +1,8 @@
-import Yup from "yup";
+import { object, number } from "yup";
 import { getMonth, isLeapYear } from "../date";
 
-const dateSchema = Yup.object().shape({
-    day: Yup.number()
+const dateSchema = object().shape({
+    day: number()
         .integer()
         .min(1, "Select a Day")
         .max(31)
@@ -32,16 +32,17 @@ const dateSchema = Yup.object().shape({
                           `There were only 29 days in February in ${year}`
                       )
                     : schema
-        ),
-    month: Yup.number()
+        )
+        .required("Select a Day"),
+    month: number()
         .integer()
         .min(1, "Select a Month")
         .max(12)
         .required("Select a Month"),
-    year: Yup.number()
+    year: number()
         .integer()
         .min(1905, "Select a Year")
-        .max(new Date().getFullYear())
+        .max(new Date().getFullYear() - 13, "You must be over 13 to register.")
         .required("Select a Year")
 });
 

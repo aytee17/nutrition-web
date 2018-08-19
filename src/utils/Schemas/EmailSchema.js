@@ -1,6 +1,6 @@
-import Yup from "yup";
+import { string } from "yup";
 
-const emailSchema = Yup.string()
+const emailSchema = string()
     .trim()
     .email("is invalid")
     .required("is required");

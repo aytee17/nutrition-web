@@ -2,9 +2,9 @@ import React from "react";
 import { Button, ButtonTitle } from "../Controls/Inputs";
 import NewPasswordInput from "../Controls/NewPasswordInput";
 import { LoadingSpinner } from "../Templates/Templates";
-import zxcvbn from "zxcvbn";
 import { withFormik } from "formik";
-import Yup from "yup";
+import { object } from "yup";
+import passwordSchema from "../../utils/Schemas/PasswordSchema";
 import api from "../../utils/api";
 
 const InnerForm = ({
@@ -55,14 +55,8 @@ const NewPasswordForm = withFormik({
     mapPropsToValues: props => ({
         password: ""
     }),
-    validationSchema: Yup.object().shape({
-        password: Yup.string()
-            .required("is required")
-            .test(
-                "is-strong-enough",
-                "must be at least medium strength",
-                password => password && zxcvbn(password).score >= 2
-            )
+    validationSchema: object().shape({
+        password: passwordSchema
     }),
     handleSubmit: (values, { props, setSubmitting, setErrors, setStatus }) => {
         const { id, hashID, hash } = props;

@@ -1,9 +1,10 @@
 import React from "react";
-import Yup from "yup";
+import { object } from "yup";
 import api from "../../utils/api";
 import { withFormik } from "formik";
 import { Button, Input, Label, ButtonTitle } from "../Controls/Inputs";
 import { MailIcon } from "../Icons/Icons";
+import emailSchema from "../../utils/Schemas/EmailSchema";
 
 const InnerForm = ({
     values,
@@ -50,10 +51,8 @@ const ResetPasswordForm = withFormik({
     mapPropsToValues: props => ({
         email: ""
     }),
-    validationSchema: Yup.object().shape({
-        email: Yup.string()
-            .email("is invalid")
-            .required("is required")
+    validationSchema: object().shape({
+        email: emailSchema
     }),
     handleSubmit: async (
         values,

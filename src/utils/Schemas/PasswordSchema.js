@@ -1,7 +1,7 @@
-import Yup from "yup";
+import { string } from "yup";
 import zxcvbn from "zxcvbn";
 
-const passwordSchema = Yup.string()
+const passwordSchema = string()
     .required("is required")
     .test(
         "is-strong-enough",
