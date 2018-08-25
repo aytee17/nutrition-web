@@ -91,7 +91,6 @@ export class Slider extends Component {
                             const isMiddle = middleIndex == index;
                             const firstHalf =
                                 index < (middleIndex ? Math.floor(half) : half);
-                            const singleDigit = value <= 9;
                             const factor = Math.ceil(40 / (levels * 2));
                             const dist = index => index * factor;
 
