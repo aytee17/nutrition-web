@@ -48,6 +48,16 @@ describe.each([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])(
     }
 );
 
+test("clicking labels changes corresponding input", () => {
+    component.find({ name: "activity_level" }).forEach(node => {
+        node.simulate("click");
+        component.update();
+        expect(component.find("input").prop("value")).toEqual(
+            node.prop("value")
+        );
+    });
+});
+
 test("input doesn't change when value props is out of range", () => {
     component.find("input").simulate("change", { target: { value: 120 } });
     component.update();
