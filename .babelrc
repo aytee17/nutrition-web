@@ -1,15 +1,15 @@
 {
-    "presets": ["react"],
+    "presets": ["@babel/preset-react"],
     "plugins": [
-        "syntax-dynamic-import",
-        "transform-class-properties",
-        "transform-object-rest-spread",
+        "@babel/plugin-syntax-dynamic-import",
+        "@babel/plugin-proposal-class-properties",
+        "@babel/plugin-proposal-object-rest-spread",
         "react-hot-loader/babel"
     ],
     "env": {
         "test": {
-            "presets": ["env"],
-            "plugins": ["transform-class-properties"]
+            "presets": ["@babel/preset-env"],
+            "plugins": ["@babel/plugin-proposal-class-properties"]
         }
     }
 }
