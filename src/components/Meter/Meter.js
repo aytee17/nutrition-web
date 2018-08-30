@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./Meter.scss";
 
-export default function Meter({
+export function Meter({
     title,
     amount,
     total,
@@ -55,5 +55,17 @@ export default function Meter({
                 </svg>
             </div>
         </div>
+    );
+}
+
+export function createMeter({ title, units, color }) {
+    return ({ amount, total }) => (
+        <Meter
+            title={title}
+            units={units}
+            total={total}
+            amount={amount}
+            color={color}
+        />
     );
 }

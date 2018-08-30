@@ -6,7 +6,11 @@ import keys from "../../../utils/keys";
 import { Button, Input } from "../../Controls/Inputs";
 import { AddIcon, CloseIcon, ClearIcon, TickIcon } from "../../Icons/Icons";
 import { Pane, Horizontal } from "../../Templates/Templates";
-import Meter from "../../Meter/Meter";
+import {
+    EnergyMeter,
+    ProteinMeter,
+    DietaryFibreMeter
+} from "../../Meter/NutritionMeters";
 import SearchList from "../../SearchList/SearchList";
 import Loadable from "react-loadable";
 
@@ -215,26 +219,17 @@ export default class AddMeal extends Component {
                             />
 
                             <div className={style["stats"]}>
-                                <Meter
-                                    title="Energy"
-                                    units="kJ"
+                                <EnergyMeter
                                     total={user.eer}
                                     amount={totalEnergy}
-                                    color="#45b0e6"
                                 />
-                                <Meter
-                                    title="Protein"
-                                    units="g"
+                                <ProteinMeter
                                     total={user.proteinRequirement}
                                     amount={totalProtein}
-                                    color="#D32F2F"
                                 />
-                                <Meter
-                                    title="Dietary Fibre"
-                                    units="g"
+                                <DietaryFibreMeter
                                     total={user.dietaryFiberRequirement}
                                     amount={totalDietaryFiber}
-                                    color="#9CCC65"
                                 />
                             </div>
 

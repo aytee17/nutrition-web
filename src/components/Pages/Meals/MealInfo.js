@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import style from "./MealInfo.scss";
-import Meter from "../../Meter/Meter";
+import { EnergyMeter, ProteinMeter } from "../../Meter/NutritionMeters";
 import { Input, SmallLabel } from "../../Controls/Inputs";
 import { Horizontal } from "../../Templates/Templates";
 
@@ -12,7 +12,7 @@ export default class MealInfo extends Component {
     }
 
     calculateAmount = total =>
-        total / this.props.meal.serves * this.state.servings;
+        (total / this.props.meal.serves) * this.state.servings;
 
     onServingsChange = event => {
         let value = event.target.value;
@@ -73,19 +73,13 @@ export default class MealInfo extends Component {
                         </Input>
                     </Horizontal>
                     <br />
-                    <Meter
-                        title="Energy"
-                        units="kJ"
+                    <EnergyMeter
                         total={user.eer}
                         amount={this.calculateAmount(meal.totalEnergy)}
-                        color="#45b0e6"
                     />
-                    <Meter
-                        title="Protein"
-                        units="g"
+                    <ProteinMeter
                         total={user.proteinRequirement}
                         amount={this.calculateAmount(meal.totalProtein)}
-                        color="#D32F2F"
                     />
                 </div>
                 <div>
