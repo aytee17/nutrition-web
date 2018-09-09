@@ -58,7 +58,7 @@ export function Meter({
     );
 }
 
-export function createMeter({ title, units, color }) {
+export function createMeter({ title, units, color, displayValue }) {
     return ({ amount, total }) => (
         <Meter
             title={title}
@@ -66,6 +66,7 @@ export function createMeter({ title, units, color }) {
             total={total}
             amount={amount}
             color={color}
+            displayValue={displayValue}
         />
     );
 }
