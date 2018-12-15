@@ -2,8 +2,8 @@ const merge = require("webpack-merge");
 const webpack = require("webpack");
 const common = require("./webpack.config.js");
 const HtmlWebpackExternalsPlugin = require("html-webpack-externals-plugin");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
-    .BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+// .BundleAnalyzerPlugin;
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = merge.smart(common, {
@@ -38,7 +38,7 @@ module.exports = merge.smart(common, {
             ]
         }),
         new webpack.HashedModuleIdsPlugin(),
-        new BundleAnalyzerPlugin(),
+        // new BundleAnalyzerPlugin(),
         new webpack.DefinePlugin({
             API_ENDPOINT: JSON.stringify("https://api.nutritiontrackr.app")
         })
