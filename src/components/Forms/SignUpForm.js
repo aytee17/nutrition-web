@@ -16,6 +16,7 @@ import emailSchema from "../../utils/Schemas/EmailSchema";
 import dateSchema from "../../utils/Schemas/DateSchema";
 import passwordSchema from "../../utils/Schemas/PasswordSchema";
 import { Link } from "@reach/router";
+import api from "../../utils/api";
 
 const InnerForm = ({
     values,
@@ -131,8 +132,9 @@ const InnerForm = ({
                         height: "1.7rem"
                     }}
                 >
-                    {touched.gender &&
-                        errors.gender && <span>{errors.gender}</span>}
+                    {touched.gender && errors.gender && (
+                        <span>{errors.gender}</span>
+                    )}
                 </Error>
 
                 <Button
@@ -207,7 +209,7 @@ const SignUpForm = withFormik({
             email: values.email.trim(),
             recaptcha
         };
-        http.post("/signup", transformedValues)
+        api.post("/signup", transformedValues)
             .then(response => {
                 setSubmitting(false);
                 const { id, hashid, email } = response.data;

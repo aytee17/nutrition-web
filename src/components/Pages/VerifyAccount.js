@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Redirect } from "@reach/router";
 
+import api from "../../utils/api";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { login, logout } from "../../redux/actions/ActionCreators";
@@ -14,7 +14,7 @@ class VerifyAccount extends Component {
 
     componentDidMount() {
         let { id, hashID, hash } = this.props.match.params;
-        http.get(`/verify/${id}/${hashID}/${hash}`)
+        api.get(`/verify/${id}/${hashID}/${hash}`)
             .then(response => {
                 this.props.login(response.data);
                 this.setState({ verified: true });
