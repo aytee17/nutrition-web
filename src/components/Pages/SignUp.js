@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import DocumentTitle from "react-document-title";
-import { Link, Redirect } from "@reach/router";
+import { Link, Redirect } from "react-router-dom";
 import { WelcomeHeading, Logo, Pane, Direction } from "../Templates/Templates";
 import SignUpForm from "../Forms/SignUpForm";
 import Recaptcha from "../Recaptcha";

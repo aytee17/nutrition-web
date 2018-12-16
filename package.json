@@ -58,7 +58,6 @@
         "webpack-merge": "^4.1.4"
     },
     "dependencies": {
-        "@reach/router": "^1.1.1",
         "axios": "^0.18.0",
         "classnames": "^2.2.5",
         "eslint-plugin-react": "^7.11.1",
@@ -70,6 +69,7 @@
         "react-dom": "^16.5.0",
         "react-loadable": "^5.5.0",
         "react-redux": "^5.0.7",
+        "react-router-dom": "^4.3.1",
         "reaptcha": "^1.2.1",
         "redux": "^4.0.0",
         "redux-thunk": "^2.3.0",

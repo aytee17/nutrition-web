@@ -4,7 +4,7 @@ import DocumentTitle from "react-document-title";
 import { Pane } from "../Templates/Templates";
 import { TickIcon } from "../Icons/Icons";
 import TimedButton from "../Controls/TimedButton";
-import { Redirect } from "@reach/router";
+import { Redirect } from "react-router-dom";
 
 export default class SignUpSuccess extends Component {
     constructor(props) {

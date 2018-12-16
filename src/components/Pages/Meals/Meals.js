@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import AppLayout from "../../Templates/AppLayout";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import MealInfo from "./MealInfo";
@@ -36,33 +37,35 @@ class Meals extends Component {
 
     render() {
         return (
-            <div
-                style={{
-                    display: "grid",
-                    gridTemplateRows: "4.8rem auto"
-                }}
-            >
+            <AppLayout>
                 <div
                     style={{
-                        fontSize: "2.375em",
-                        fontWeight: "bold",
-                        letterSpacing: "-0.005em",
-                        alignItems: "center",
-                        display: "flex",
-                        margin: "2rem 0 0 3rem"
+                        display: "grid",
+                        gridTemplateRows: "4.8rem auto"
                     }}
                 >
-                    Meals
+                    <div
+                        style={{
+                            fontSize: "2.375em",
+                            fontWeight: "bold",
+                            letterSpacing: "-0.005em",
+                            alignItems: "center",
+                            display: "flex",
+                            margin: "2rem 0 0 3rem"
+                        }}
+                    >
+                        Meals
+                    </div>
+                    <div
+                        style={{
+                            margin: "1rem 0 0 3rem"
+                        }}
+                    >
+                        <AddMeal user={this.props.user} />
+                        {this.renderMeals()}
+                    </div>
                 </div>
-                <div
-                    style={{
-                        margin: "1rem 0 0 3rem"
-                    }}
-                >
-                    <AddMeal user={this.props.user} />
-                    {this.renderMeals()}
-                </div>
-            </div>
+            </AppLayout>
         );
     }
 }

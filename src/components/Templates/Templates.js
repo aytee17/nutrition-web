@@ -1,7 +1,7 @@
 import React, { Component, Children } from "react";
 import style from "./Templates.scss";
 import cs from "classnames";
-import { Link } from "@reach/router";
+import { Link } from "react-router-dom";
 import { DownIcon } from "../Icons/Icons";
 
 const BackgroundScroll = ({ children }) => (

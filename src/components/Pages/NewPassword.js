@@ -54,7 +54,7 @@ class NewPassword extends React.Component {
                         </div>
                     ) : (
                         <NewPasswordForm
-                            {...this.props}
+                            {...this.props.match.params}
                             setSubmitted={this.setSubmitted}
                         />
                     )}

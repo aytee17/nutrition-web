@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "@reach/router";
+import { Redirect } from "react-router-dom";
 
 import api from "../../utils/api";
 import { connect } from "react-redux";

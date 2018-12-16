@@ -1,6 +1,6 @@
 import React from "react";
-import { Router } from "@reach/router";
-import Private from "./Private";
+import { BrowserRouter, Route } from "react-router-dom";
+import PrivateRoute from "./HOC/PrivateRoute";
 import SignUpSuccess from "./Pages/SignUpSuccess";
 import VerifyAccount from "./Pages/VerifyAccount";
 import Login from "./Pages/Login";
@@ -12,8 +12,6 @@ import Meals from "./Pages/Meals/Meals";
 import Loadable from "react-loadable";
 
 import { hot } from "react-hot-loader";
-
-import AppLayout from "./Templates/AppLayout";
 
 const SignUp = Loadable({
     loader: () => import("./Pages/SignUp"),
@@ -32,20 +30,30 @@ class App extends React.Component {
 
     render() {
         return (
-            <Router>
-                <SignUp path="/signup" />
-                <SignUpSuccess path="/success" />
-                <VerifyAccount path="/verify/:id/:hashID/:hash" />
-                <Login path="/login" />
-                <ForgotPassword path="/reset_password" />
-                <NewPassword path="/reset/:id/:hashID/:hash" />
-                <Private path="/">
-                    <AppLayout path="/">
-                        <Dashboard path="/" />
-                        <Meals path="/meals" />
-                    </AppLayout>
-                </Private>
-            </Router>
+            <BrowserRouter>
+                <div style={{ height: "100%", display: "grid" }}>
+                    <Route exact path="/signup" component={SignUp} />
+                    <Route exact path="/success" component={SignUpSuccess} />
+                    <Route
+                        exact
+                        path="/verify/:id/:hashID/:hash"
+                        component={VerifyAccount}
+                    />
+                    <Route exact path="/login" component={Login} />
+                    <Route
+                        exact
+                        path="/reset_password"
+                        component={ForgotPassword}
+                    />
+                    <Route
+                        exact
+                        path="/reset/:id/:hashID/:hash"
+                        component={NewPassword}
+                    />
+                    <PrivateRoute exact path="/" component={Dashboard} />
+                    <PrivateRoute exact path="/meals" component={Meals} />
+                </div>
+            </BrowserRouter>
         );
     }
 }

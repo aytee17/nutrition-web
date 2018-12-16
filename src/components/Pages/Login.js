@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import DocumentTitle from "react-document-title";
-import { Redirect, Link } from "@reach/router";
+import { Redirect, Link } from "react-router-dom";
 
 import { WelcomeHeading, Logo, Pane, Direction } from "../Templates/Templates";
 import LoginForm from "../Forms/LoginForm";
